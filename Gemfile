@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Custom gems
+gem 'simple_form-tailwind'
 gem 'simple_form'
 gem 'devise'
 

@@ -1,0 +1,21 @@
+<h1 class='hero-title text-center'>Gigs</h1>
+<div class='container'>
+  <div class='row row-cols-sm-1 row-cols-md-2 row-cols-lg-4'>
+    <% @gigs.each do |gig| %>
+      <div class="col mb-4">
+        <div class='card border-dark h-100'>
+            <%= image_tag "placeholder", alt: "placeholder image - Spinal Tap", class: "thumbnail card-img top" %>
+          <div class='card-body'>
+            <h5><%= gig.date %> , <%= gig.venue %></h5>
+            <h6 class='card-subtitle my-2 text-muted'>Added <%= time_ago_in_words(gig.created_at) %> ago</h6>
+            <p class='card-text text-secondary text-truncate'> Posted by <%= gig.user.profile.name%></p>
+            <div class='d-flex flex-column justify-content-between'>
+                <h5> Payment: <%= gig.payment %></h5>
+              <%= link_to "See more", gig_path(gig.id), class: "btn btn-outline-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>

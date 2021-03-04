@@ -1,16 +1,31 @@
-<nav class="flex md:justify-between bg-purple-300 p-5">
-  <div>
-    <a href="#">LineUp</a>
-    <p id="hamburgerbtn" class="md:hidden bg-purple-800">menu</p>
-  </div>
-  <ul class="hidden md:flex md:flex-row" id="mobileMenu">
-    <li class="pr-5"><a>What is LineUp?</a></li>
-    <li class="pr-5"><a>Post a Gig</a></li>
-    <li class="pr-5"><a>Browse Gigs</a></li>
-    <li class="pr-5"><a>Browse Musos</a></li>
-  </ul>
-  <div class="hidden md:flex md:flex-row">
-    <a href="#">Login</a>
-    <a href="#">Sign Up</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="d-flex p-2 bd-highlight">
+    <a class="navbar-brand" href="#">LineUp</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex " id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">What is LineUp?</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Post a Gig</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#">Browse Gigs</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="#">Browse Musos</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      <div>
+        <%= icon("person-fill", class:"navbar-icon") %>
+      </div>
+    </div>
   </div>
 </nav>

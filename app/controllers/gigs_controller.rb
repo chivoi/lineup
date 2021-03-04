@@ -77,8 +77,7 @@ class GigsController < ApplicationController
 
   def set_form_vars
     @styles = Style.all
-    @payment_types = Gig.payment.keys
     @features = Feature.all
-    @musitypes = Musictype.all
+    @musictypes = Musictype.all
   end
 end

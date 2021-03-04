@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_061210) do
+ActiveRecord::Schema.define(version: 2021_03_04_025707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2021_03_03_061210) do
 
   create_table "gigs", force: :cascade do |t|
     t.date "date"
-    t.time "time"
+    t.string "time"
     t.string "venue"
     t.string "location"
     t.text "description"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2021_03_03_061210) do
 
   create_table "profiles", force: :cascade do |t|
     t.string "name"
-    t.int4range "playtime"
+    t.string "playtime"
     t.bigint "musictype_id", null: false
     t.text "demolinks"
     t.string "location"

@@ -22,6 +22,6 @@
   <%= f.input :set_length, label: "Set length (min)", collection: 25..120, wrapper_html: {class: "form-group mb-3 ml-3"} %>
   <%= f.input :tickets_presale, as: :currency, wrapper_html: {class: "form-group mb-3 ml-3"} %>
   <%= f.input :door_charge, as: :currency, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :payment, collection: Gig.payments, as: :radio_buttons, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.button :submit %>
+  <%= f.input :payment, :collection => Gig.payments.keys, as: :radio_buttons, wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.button :submit%>
 <% end %>

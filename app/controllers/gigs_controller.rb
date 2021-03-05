@@ -63,7 +63,7 @@ class GigsController < ApplicationController
   end
 
   def gig_params
-      params.require(:gig).permit(:date, :time, :venue, :location, :description, :musictype_id, :set_length, :tickets_presale, :door_charge, :payment, feature_ids: [])
+      params.require(:gig).permit(:date, :time, :venue, :location, :description, :musictype_id, :set_length, :tickets_presale, :door_charge, :payment, feature_ids: [], style_ids: [])
   end
 
   # authorization
@@ -79,5 +79,6 @@ class GigsController < ApplicationController
     @styles = Style.all
     @features = Feature.all
     @musictypes = Musictype.all
+    @payments = Gig.payments.values
   end
 end

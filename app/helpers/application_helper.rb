@@ -8,4 +8,9 @@ module ApplicationHelper
     end
       doc.to_html.html_safe
   end
+
+  def convert_price_to_dollars(price)
+    number_with_precision price/100, precision: 2
+  end
+
 end

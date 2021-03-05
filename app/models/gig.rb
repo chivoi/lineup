@@ -8,4 +8,14 @@ class Gig < ApplicationRecord
   has_many :gig_styles, dependent: :destroy
   has_many :styles, through: :gig_styles
   accepts_nested_attributes_for :gig_styles
+  
+  before_save :remove_whitespace
+
+  private
+
+  def remove_whitespace
+    self.time = self.time.strip
+    self.description = self.description.strip
+  end
+
 end

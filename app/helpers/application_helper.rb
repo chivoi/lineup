@@ -13,4 +13,19 @@ module ApplicationHelper
     number_with_precision price/100, precision: 2
   end
 
+  def select_alert_subclass(input)
+    case input
+    when 'notice'
+      return 'info'
+    when 'success'
+      return 'success'
+    when 'error'
+      return 'danger'
+    when 'alert'
+      return 'warning'
+    else 
+      return 'warning'
+    end
+  end
+
 end

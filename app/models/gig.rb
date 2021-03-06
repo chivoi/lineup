@@ -16,6 +16,8 @@ class Gig < ApplicationRecord
   def remove_whitespace
     self.time = self.time.strip
     self.description = self.description.strip
+    self.venue = self.venue.strip
+    self.location = self.location.strip
   end
 
 end

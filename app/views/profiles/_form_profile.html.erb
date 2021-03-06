@@ -1,0 +1,24 @@
+<%= simple_form_for @profile do |f| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+        <% profile.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :name, wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :playtime, label: "How long is your set? time", hint: "Ex: 30-45 min", wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :musictype_id, label: "Type of set", :collection => musictypes.map{|mt| [mt.name, mt.id]}, label_method: :first, value_method: :second, wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.association :styles, label: "Music styles", as: :check_boxes, wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :demolinks, as: :text, hint: "Post links to the videos of you playing, social media profiles, any released music or demos.", wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :location, wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= %>
+  <%= f.input :bio, as: :text, hint: "A few words about yourself", wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :teamups, label: "Are you open to teaming up with other bands to organize shows together?", hint: "Ticking this box will show your band profile in Browse Musos section, allow you to message other members and other members message you.", as: :boolean, checked_value: true, unchecked_value: false, wrapper_html: {class: "form-group mb-3 ml-3"}  %>
+  <%= f.button :submit%>
+<% end %>

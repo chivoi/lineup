@@ -65,9 +65,9 @@ class ProfilesController < ApplicationController
     params.require(:profile).permit(:name, :playtime, :musictype_id, :demolinks, :location, :teamups, :bio, style_ids: [])
   end
 
-  # def set_user_profile
-  #   @profile = current_user.profile
-  # end
+  def set_user_profile
+    @profile = current_user.profile
+  end
 
   def set_form_vars
     @styles = Style.all

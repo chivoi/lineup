@@ -28,6 +28,8 @@
         <button>Apply</button>
       <%elsif @gig.filled == true%>
         <button class="btn btn-secondary" disabled>Filled</button>
+      <% elsif current_user && !current_user.profile %>
+        <%= button_to "Create a profile to apply for this gig!", new_user_session_path %>
       <% else %>
         <%= button_to "Login to go on the bill", new_user_session_path %>
       <%end%>

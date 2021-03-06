@@ -25,6 +25,7 @@
         <li class="nav-item">
           <%if user_signed_in? %>
             <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: 'dropdown-item'%>
+            <%= link_to "My Profile", current_user.profile ? profile_path(current_user.profile.id) : new_profile_path %>
           <%else%>
             <%= link_to "Sign Up", new_user_registration_path, class: 'dropdown-item'%>
             <%= link_to "Log in", new_user_session_path, class: 'dropdown-item'%>

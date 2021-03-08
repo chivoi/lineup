@@ -10,20 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_05_015928) do
+ActiveRecord::Schema.define(version: 2021_03_08_063121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "applications", force: :cascade do |t|
-    t.bigint "gig_id", null: false
-    t.bigint "profile_id", null: false
-    t.integer "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["gig_id"], name: "index_applications_on_gig_id"
-    t.index ["profile_id"], name: "index_applications_on_profile_id"
-  end
 
   create_table "features", force: :cascade do |t|
     t.string "name"
@@ -98,6 +88,16 @@ ActiveRecord::Schema.define(version: 2021_03_05_015928) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.bigint "gig_id", null: false
+    t.bigint "profile_id", null: false
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gig_id"], name: "index_requests_on_gig_id"
+    t.index ["profile_id"], name: "index_requests_on_profile_id"
+  end
+
   create_table "styles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -117,8 +117,6 @@ ActiveRecord::Schema.define(version: 2021_03_05_015928) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "applications", "gigs"
-  add_foreign_key "applications", "profiles"
   add_foreign_key "gig_features", "features"
   add_foreign_key "gig_features", "gigs"
   add_foreign_key "gig_styles", "gigs"
@@ -129,4 +127,6 @@ ActiveRecord::Schema.define(version: 2021_03_05_015928) do
   add_foreign_key "profile_styles", "styles"
   add_foreign_key "profiles", "musictypes"
   add_foreign_key "profiles", "users"
+  add_foreign_key "requests", "gigs"
+  add_foreign_key "requests", "profiles"
 end

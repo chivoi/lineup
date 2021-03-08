@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 2021_03_08_071527) do
   create_table "requests", force: :cascade do |t|
     t.bigint "gig_id", null: false
     t.integer "status", default: 0
+    t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "message"
     t.bigint "user_id"
     t.index ["gig_id"], name: "index_requests_on_gig_id"
     t.index ["user_id"], name: "index_requests_on_user_id"

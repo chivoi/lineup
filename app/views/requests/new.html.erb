@@ -4,7 +4,6 @@
   <% if request.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being processed:</h2>
-
       <ul>
         <% request.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -13,7 +12,7 @@
     </div>
   <% end %>
 
-  <%= f.input :message, label: "Name of your act", wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :message, label: "Type your message to #{@gig.user.profile.name}", wrapper_html: {class: "form-group mb-3 ml-3"} %>
   <%= f.button :submit, label: "Request", class: "btn btn-dark ml-2"%>
 <% end %>
 

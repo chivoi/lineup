@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_08_070806) do
+ActiveRecord::Schema.define(version: 2021_03_08_071527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,13 +90,13 @@ ActiveRecord::Schema.define(version: 2021_03_08_070806) do
 
   create_table "requests", force: :cascade do |t|
     t.bigint "gig_id", null: false
-    t.bigint "profile_id", null: false
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "message"
+    t.bigint "user_id"
     t.index ["gig_id"], name: "index_requests_on_gig_id"
-    t.index ["profile_id"], name: "index_requests_on_profile_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
   create_table "styles", force: :cascade do |t|
@@ -129,5 +129,4 @@ ActiveRecord::Schema.define(version: 2021_03_08_070806) do
   add_foreign_key "profiles", "musictypes"
   add_foreign_key "profiles", "users"
   add_foreign_key "requests", "gigs"
-  add_foreign_key "requests", "profiles"
 end

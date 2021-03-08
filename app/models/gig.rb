@@ -8,6 +8,8 @@ class Gig < ApplicationRecord
   has_many :gig_styles, dependent: :destroy
   has_many :styles, through: :gig_styles
   accepts_nested_attributes_for :gig_styles
+
+  validates :date, inclusion: {in: (Date.today..Date.today+5.years)}
   
   before_save :remove_whitespace
 

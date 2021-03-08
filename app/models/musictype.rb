@@ -1,4 +1,4 @@
 class Musictype < ApplicationRecord
   has_one :gig
-  has_many :profiles
+  has_one :profile
 end

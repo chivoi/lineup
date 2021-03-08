@@ -5,6 +5,8 @@ class Profile < ApplicationRecord
   has_many :styles, through: :profile_styles
   accepts_nested_attributes_for :profile_styles
 
+  validates :name, presence: true
+
   before_save :remove_whitespace
 
   private

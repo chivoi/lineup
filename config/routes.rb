@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {registrations: "registrations"} do
-    resource :profile
-  end
+  devise_for :users
+  # devise_for :users, controllers: {registrations: "registrations"} do
+  #   resources :profiles
+  # end
   root to: 'pages#home'
   resources :gigs
   resources :profiles
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -2,21 +2,23 @@
 <div class='container'>
   <div class='row row-cols-sm-1 row-cols-md-2 row-cols-lg-4'>
     <% @profiles.each do |profile| %>
-      <div class="col mb-4">
-        <div class='card border-dark h-100'>
-            <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top" %>
-          <div class='card-body'>
-            <h5><%= profile.name %></h5>
-            <h6 class='card-subtitle my-2'><%= icon("geo-alt-fill", class:"show-icon") %> <%= profile.location %></h6>
-            <% profile.styles.each do |style|%>
-              <span class='badge <%= select_badge_color(style.id)%> mb-2'><%= style.name %></span>
-            <%end %>
-            <div class='d-flex flex-column justify-content-between'>
-              <%= link_to "See more", profile_path(profile.id), class: "btn btn-outline-primary" %>
+      <% if profile.teamups? %>
+        <div class="col mb-4">
+          <div class='card border-dark h-100'>
+              <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top" %>
+            <div class='card-body'>
+              <h5><%= profile.name %></h5>
+              <h6 class='card-subtitle my-2'><%= icon("geo-alt-fill", class:"show-icon") %> <%= profile.location %></h6>
+              <% profile.styles.each do |style|%>
+                <span class='badge <%= select_badge_color(style.id)%> mb-2'><%= style.name %></span>
+              <%end %>
+              <div class='d-flex flex-column justify-content-between'>
+                <%= link_to "See more", profile_path(profile.id), class: "btn btn-outline-primary" %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <%end%>
   </div>
 </div>

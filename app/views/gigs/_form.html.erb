@@ -1,7 +1,7 @@
 <%= simple_form_for @gig do |f| %>
   <% if gig.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(gig.errors.count, "error") %> prohibited this listing from being saved:</h2>
+      <h3><%= pluralize(gig.errors.count, "error") %> prohibited this listing from being saved:</h3>
 
       <ul>
         <% gig.errors.each do |error| %>
@@ -50,6 +50,10 @@
               :collection => Gig.payments.keys, 
               as: :radio_buttons, 
               wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.file_field :image, 
+              as: :image, 
+              input_html: { data: { direct_upload_url: :rails_direct_uploads_url } },
+              wrapper_html: {class: "form-group mb-5 ml-3"} %>
   <%= f.button :submit,
               wrapper_html: {class: "btn btn-dark  mb-3 ml-3"}%>
 <% end %>

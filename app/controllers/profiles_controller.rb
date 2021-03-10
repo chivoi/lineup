@@ -62,7 +62,7 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:name, :playtime, :musictype_id, :demolinks, :location, :teamups, :bio, style_ids: [])
+    params.require(:profile).permit(:name, :playtime, :musictype_id, :demolinks, :location, :teamups, :bio, style_ids: [], image: [])
   end
 
   def set_user_profile

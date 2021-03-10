@@ -1,7 +1,11 @@
 <div class="container d-flex flex-column flex-md-row-reverse px-2 my-2 my-md-5">
   <div class="content col-12 col-md-7 col-lg-8 p-0 pr-md-3"> 
     <div class="col-12 p-0 main-preview mb-4">
-       <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top" %>
+      <% if @profile.image.attached? %>
+        <%= image_tag @profile.image.first, alt: "photo of the act", class: "thumbnail card-img top" %>
+      <%else%>
+        <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top" %>
+      <% end %>
     </div>
   </div>
   <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
@@ -34,7 +38,7 @@
     <div class='row row-cols-sm-1 row-cols-md-2 row-cols-lg-4'>
       <% @profile.user.gigs.each do |gig| %>
         <div class="col mb-4">
-          <div class='card border-dark h-100'>
+         <div class='card border-dark h-100'>
             <% if gig.image.attached? %>
               <%= image_tag gig.image, alt: "poster of the gig", class: "thumbnail card-img top" %>
             <%else%>
@@ -43,7 +47,6 @@
             <div class='card-body'>
               <h5><%= gig.date.strftime("%d %b %Y") %> , <%= gig.venue %></h5>
               <h6 class='card-subtitle my-2 text-muted'>Added <%= time_ago_in_words(gig.created_at) %> ago</h6>
-              <p class='card-text text-truncate'> Posted by <%= gig.user.profile.name%></p>
               <div class='d-flex flex-column justify-content-between'>
                 <%= link_to "See more", gig_path(gig.id), class: "btn btn-outline-primary" %>
               </div>

@@ -11,14 +11,44 @@
     </div>
   <% end %>
 
-  <%= f.input :name, label: "Name of your act", wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :playtime, label: "How long is your set?", hint: "Ex: 30-45 min", wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :musictype_id, label: "Type of set", :collection => musictypes.map{|mt| [mt.name, mt.id]}, label_method: :first, value_method: :second, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.association :styles, label: "Music styles", as: :check_boxes, wrapper_html: {class: "form-group mb-3 ml-3 d-flex flex-row"} %>
-  <%= f.input :demolinks, label: "Links to demos", hint: "Post links to the videos of you playing, social media profiles, any released music or demos.", as: :text, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :location, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= %>
-  <%= f.input :bio, as: :text, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :teamups, label: "Are you open to teaming up with other bands to organize shows together?", hint: "Ticking this box will show your band profile in Browse Musos section, allow you to message other members and other members message you for teamups. If you don't tick it, you can still apply for gigs and post your own.", as: :boolean, checked_value: true, unchecked_value: false, wrapper_html: {class: "form-group mb-3 ml-3"}  %>
+  <%= f.input :name, 
+              label: "Name of your act", 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :playtime, 
+              label: "How long is your set?", 
+              hint: "Example: 30-45 min", 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+ <%= f.association :musictype, 
+              label: "Type of set", 
+              label_method: :name,
+              value_method: :id,
+              include_blank: false,
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.association :styles, 
+              label: "Music styles", 
+              as: :check_boxes, 
+              wrapper_html: {class: "form-group mb-3 ml-3 d-flex flex-row"} %>
+  <%= f.input :demolinks, 
+              label: "Links to demos", 
+              hint: "Post links to the videos of you playing, social media profiles, any released music or demos.", 
+              as: :text, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :location, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :bio, 
+              as: :text, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :teamups, 
+              label: "Are you open to teaming up with other bands to organize shows together?", 
+              hint: "Ticking this box will show your band profile in Browse Musos section, allow you to message other members and other members message you for teamups. If you don't tick it, you can still apply for gigs and post your own.", 
+              as: :boolean, 
+              checked_value: true, 
+              unchecked_value: false, 
+              wrapper_html: {class: "form-group mb-3 ml-3"}  %>
+  <%= f.file_field :image, 
+              as: :image, 
+              multiple: true,
+              input_html: { data: { direct_upload_url: :rails_direct_uploads_url } },
+              wrapper_html: {class: "form-group mb-5 ml-3"} %>
   <%= f.button :submit, class: "btn btn-dark ml-2"%>
 <% end %>

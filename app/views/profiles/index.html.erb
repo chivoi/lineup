@@ -5,7 +5,11 @@
       <% if profile.teamups? %>
         <div class="col mb-4">
           <div class='card border-dark h-100'>
-              <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top" %>
+              <% if profile.image.attached? %>
+                <%= image_tag profile.image.first, alt: "photo of the act", class: "thumbnail card-img top" %>
+              <%else%>
+                <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top" %>
+              <% end %>
             <div class='card-body'>
               <h5><%= profile.name %></h5>
               <h6 class='card-subtitle my-2'><%= icon("geo-alt-fill", class:"show-icon") %> <%= profile.location %></h6>

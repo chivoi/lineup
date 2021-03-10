@@ -9,9 +9,7 @@
     <% @profile.styles.each do |style|%>
       <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
     <%end%>
-    <div class="d-flex flex-row">
-      <h5 class='mb-2 mt-2 align-self-end pb-1'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @profile.location %></h5>
-      </div>
+    <h5 class='mb-2 mt-2 pb-1'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @profile.location %></h5> 
     <p><b>Set:</b> <%= @profile.playtime %></p>
     <p><b>Demos:</b></p> 
     <%= @profile.demolinks %>
@@ -31,13 +29,17 @@
 </div>
 
 <% if current_user.id == @profile.user.id%>
-  <h1 class='align-center'>My posted gigs:</h2>
+  <h1 class='align-center ml-5 mb-4'>My posted gigs:</h2>
   <div class='container'>
     <div class='row row-cols-sm-1 row-cols-md-2 row-cols-lg-4'>
       <% @profile.user.gigs.each do |gig| %>
         <div class="col mb-4">
           <div class='card border-dark h-100'>
+            <% if gig.image.attached? %>
+              <%= image_tag gig.image, alt: "poster of the gig", class: "thumbnail card-img top" %>
+            <%else%>
               <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "thumbnail card-img top" %>
+            <% end %>
             <div class='card-body'>
               <h5><%= gig.date.strftime("%d %b %Y") %> , <%= gig.venue %></h5>
               <h6 class='card-subtitle my-2 text-muted'>Added <%= time_ago_in_words(gig.created_at) %> ago</h6>

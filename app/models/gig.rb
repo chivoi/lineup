@@ -9,7 +9,7 @@ class Gig < ApplicationRecord
   has_many :styles, through: :gig_styles
   accepts_nested_attributes_for :gig_styles
 
-  validates :date, inclusion: {in: (Date.today..Date.today+5.years)}
+  validates :date, inclusion: {in: (Date.today..Date.today+5.years), :message => "can not be in the past or too far in the future."}
   
   before_save :remove_whitespace
 

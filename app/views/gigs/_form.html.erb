@@ -11,17 +11,45 @@
     </div>
   <% end %>
 
-  <%= f.input :date, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :time, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :venue, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :location, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.association :styles, as: :check_boxes, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :description, as: :text, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.association :features, as: :check_boxes, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :musictype_id, label: "Type of set", :collection => musictypes.map{|mt| [mt.name, mt.id]}, label_method: :first, value_method: :second, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :set_length, label: "Set length (min)", collection: 25..120, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :tickets_presale, as: :currency, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :door_charge, as: :currency, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :payment, :collection => Gig.payments.keys, as: :radio_buttons, wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.button :submit%>
+  <%= f.input :date, 
+              as: :date, 
+              start_year: Date.today.year,
+              end_year: Date.today.year + 5,
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :time, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :venue, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :location, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.association :styles, 
+              as: :check_boxes, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :description, 
+              as: :text, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.association :features, 
+              as: :check_boxes, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.association :musictype, 
+              label: "Type of set", 
+              label_method: :name,
+              value_method: :id,
+              include_blank: false,
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :set_length, 
+              label: "Set length (min)", 
+              collection: 25..120, wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :tickets_presale, 
+              as: :currency, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :door_charge, 
+              as: :currency, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.input :payment, 
+              :collection => Gig.payments.keys, 
+              as: :radio_buttons, 
+              wrapper_html: {class: "form-group mb-3 ml-3"} %>
+  <%= f.button :submit,
+              wrapper_html: {class: "btn btn-dark  mb-3 ml-3"}%>
 <% end %>

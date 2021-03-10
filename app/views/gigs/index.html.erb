@@ -8,7 +8,7 @@
           <div class='card-body'>
             <h5><%= gig.date.strftime("%d %b %Y") %> , <%= gig.venue %></h5>
             <h6 class='card-subtitle my-2 text-muted'>Added <%= time_ago_in_words(gig.created_at) %> ago</h6>
-            <p class='card-text text-truncate'> Posted by <%= gig.user.profile.name%></p>
+            <p class='card-text text-truncate'> Posted by <%= link_to gig.user.profile.name, profile_path(gig.user.profile.id)%></p>
             <div class='d-flex flex-column justify-content-between'>
               <%= link_to "See more", gig_path(gig.id), class: "btn btn-outline-primary" %>
             </div>

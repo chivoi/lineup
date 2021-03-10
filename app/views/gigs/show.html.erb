@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
-    <h1 class='mb-2'><%= @gig.user.profile.name %> @ <%= @gig.venue %></h1>
+    <h1 class='mb-2'><%= link_to @gig.user.profile.name, profile_path(@gig.user.profile.id) %> @ <%= @gig.venue %></h1>
     <% @gig.styles.each do |style|%>
       <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
     <%end%>
@@ -25,7 +25,7 @@
     <p class='mt-2'><%= @gig.description %></p>
     <div class="mt-3 mb-3">
       <%if current_user && @gig.filled == false%>
-        <button>Apply</button>
+        <%= button_to "Join this gig!",  %>
       <%elsif @gig.filled == true%>
         <button class="btn btn-secondary" disabled>Filled</button>
       <% elsif current_user && !current_user.profile %>

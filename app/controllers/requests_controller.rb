@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
 
   def new
-    @request = Request.create(user_id: user_id, gig_id: gig_id, message: message)
+    @request = Request.create(user_id: current_user_id, gig_id: @gig.id, message: message)
   end
 
   private

@@ -29,7 +29,7 @@
       <%if !current_user && @gig.filled == false%>
         <%= button_to "Login to go on the bill", new_user_session_path %>
       <%elsif current_user.id != @gig.user_id && !@gig.filled%>
-        <button> Request to join </button>
+       <%= button_to "Request to join", new_request_path  %>
       <%elsif @gig.filled == true%>
         <button class="btn btn-secondary" disabled>Filled</button>
       <%elsif !current_user && @gig.filled == false%>

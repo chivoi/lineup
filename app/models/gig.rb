@@ -1,6 +1,7 @@
 class Gig < ApplicationRecord
   belongs_to :musictype
   belongs_to :user
+  has_many :requests
   enum payment: {fixed: 0, percentage: 1, rider: 2}
   has_many :gig_features, dependent: :destroy
   has_many :features, through: :gig_features

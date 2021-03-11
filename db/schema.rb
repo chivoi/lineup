@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_015338) do
+ActiveRecord::Schema.define(version: 2021_03_11_004932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_015338) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "message"
     t.bigint "user_id"
+    t.integer "host_id"
     t.index ["gig_id"], name: "index_requests_on_gig_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end

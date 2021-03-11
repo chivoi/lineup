@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :gigs
   resources :profiles
-  resources :requests
+  post '/gigs/:id/request', to: "requests#new", as: "new_request"
 end

@@ -29,8 +29,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Custom gems
-gem 'bootstrap', '~> 4.5.2'
-gem 'jquery-rails'
 gem 'simple_form'
 gem 'devise'
 gem 'nested_form'

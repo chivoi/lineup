@@ -12,4 +12,9 @@ class User < ApplicationRecord
     build_profile if profile.nil?
     self
   end
+
+  def received_requests
+    Request.where(host_id: self.id)
+  end
+  
 end

@@ -5,13 +5,37 @@ class DonationsController < ApplicationController
   end
 
   def create
-    
+    @donation = Donation.new(donation_params)
   end
 
-  def webhook
-    payment_intent_id = params[:data][:object][:payment_intent]
-    payment = Stripe::PaymentIntent.retrieve(payment_intent_id)
-    email = payment.metadata.email
-    name = payment.metadata.name
-    Donation.create(email: email, name: name, payment_intent: payment_intent_id, receipt_url: payment.charges.data[0].receipt_url)
+  def show
+    stripe_session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      client_reference_id: current_user ? current_user.id : nil,
+      customer_email: params[:email],
+      line_items: [{
+        amount: @listing.price * 100,
+        name: @listing.title,
+        description: @listing.description,
+        currency: 'aud',
+        quantity:1
+      }],
+        payment_intent_data: {
+          metadata: {
+          listing_id: @listing.id,
+          user_id: current_user ? current_user.id : nil
+          }
+        },
+        success_url: "#{root_url}payments/success?listingId=#{@listing.id}",
+        cancel_url: "#{root_url}listings"
+    )
+    @session_id = stripe_session.id
+    pp stripe_session
+  end
+
+  private
+
+  def donation_params
+    params.require(:donation).permit(:name, :email, :amount)
+  end
 end

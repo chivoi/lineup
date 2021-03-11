@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :profiles
   post '/gigs/:id/request', to: "requests#new", as: "new_request"
   get '/my_requests', to: "requests#show", as: "user_requests"
+  resources :donations
   post 'payments/webhook', to: 'payments#webhook'
   get 'payments/success', to: 'pages#payment_success'
 end

@@ -28,8 +28,8 @@
                   <%= link_to "My Profile", current_user.profile ? profile_path(current_user.profile.id) : new_profile_path %>
                 </li>
                 <li class="dropdown-item p-0" href="#">
-                  <p>My Requests </p>
-                </li>
+                  <%= link_to "My requests", user_requests_path %>
+                </>
                 <li class="dropdown-item p-0" href="#">
                   <p class="p-0">My Gigs</p>
                 </li>

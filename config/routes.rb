@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :gigs
   resources :profiles
   post '/gigs/:id/request', to: "requests#new", as: "new_request"
-  get 'profiles/:id/requests', to: "requests#show", as: "user_requests"
+  get '/my_requests', to: "requests#show", as: "user_requests"
 end

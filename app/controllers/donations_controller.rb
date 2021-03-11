@@ -5,7 +5,6 @@ class DonationsController < ApplicationController
   end
 
   def create
-    @donation = Donation.new(donation_params)
   end
 
   def show
@@ -13,24 +12,22 @@ class DonationsController < ApplicationController
       payment_method_types: ['card'],
       client_reference_id: current_user ? current_user.id : nil,
       customer_email: params[:email],
+      customer_name: params[:name],
       line_items: [{
-        amount: @listing.price * 100,
-        name: @listing.title,
-        description: @listing.description,
-        currency: 'aud',
-        quantity:1
+        amount: params[:amount],
+        currency: 'aud'
       }],
         payment_intent_data: {
           metadata: {
-          listing_id: @listing.id,
-          user_id: current_user ? current_user.id : nil
+          user_id: current_user ? current_user.id : nil,
+          name: params[:name],
+          email: params[:email]
           }
         },
-        success_url: "#{root_url}payments/success?listingId=#{@listing.id}",
-        cancel_url: "#{root_url}listings"
+        success_url: "#{root_url}payments/success",
+        cancel_url: "#{root_url}gigs"
     )
     @session_id = stripe_session.id
-    pp stripe_session
   end
 
   private

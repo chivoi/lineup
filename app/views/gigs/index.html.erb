@@ -11,8 +11,11 @@
           <% end %>
           <div class='card-body'>
             <h5><%= gig.date.strftime("%d %b %Y") %> , <%= gig.venue %></h5>
+            <% if gig.filled%>
+              <h6>- FILLED</h6>
+            <% end %>
             <% gig.styles.each do |style|%>
-            <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
+              <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
             <%end%>
             <h6 class='card-subtitle my-2 text-muted'>Added <%= time_ago_in_words(gig.created_at) %> ago</h6>
             <p class='card-text text-truncate'> Posted by <%= link_to gig.user.profile.name, profile_path(gig.user.profile.id)%></p>

@@ -10,6 +10,9 @@
   </div>
   <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
     <h1 class='mb-2'><%= link_to @gig.user.profile.name, profile_path(@gig.user.profile.id) %> @ <%= @gig.venue %></h1>
+    <% if @gig.filled%>
+    <h3>- FILLED</h3>
+    <% end %>
     <% @gig.styles.each do |style|%>
       <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
     <%end%>

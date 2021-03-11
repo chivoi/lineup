@@ -28,3 +28,16 @@
 .border-rad {
   border-radius: 12px;
 }
+
+.request-card {
+  margin: 30px;
+  width: 90%;
+  height: fit-content;
+  border: 1px solid black;
+
+}
+
+.request-card-img {
+  max-height: 100px;
+  overflow: hidden;
+}

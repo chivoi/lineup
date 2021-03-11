@@ -54,14 +54,13 @@
                   checked_value: true, unchecked_value: false, 
                   wrapper_html: {class: "form-group mb-3 ml-3"}  %>
       <%= s.file_field :image,
-            label: "Upload a photo of your act", 
-            as: :image, 
-            multiple: true,
-            input_html: { data: { direct_upload_url: :rails_direct_uploads_url } },
-            wrapper_html: {class: "form-group mb-5 ml-3"} %>
+                  as: :image, 
+                  multiple: true,
+                  input_html: { data: { direct_upload_url: :rails_direct_uploads_url } },
+                  class: "mx-3 my-2" %>
       <% end %>
     <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.input :submit, "Sign up", class: "mx-3 my-2 btn btn-dark" %>
     </div>
   </div>
 <%end%>

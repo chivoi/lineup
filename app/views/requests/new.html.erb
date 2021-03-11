@@ -1,1 +1,24 @@
-<p>You have requested to join this gig</p>
+<h3>Congratulations! You're playing this show with <%= @host.name %>:</h3>
+
+<div class='container'>
+    <div class='row row-cols-sm-1 row-cols-md-2 row-cols-lg-4'>
+        <div class="col mb-4">
+         <div class='card border-dark h-100'>
+            <% if @gig.image.attached? %>
+              <%= image_tag @gig.image, alt: "poster of the gig", class: "thumbnail card-img top" %>
+            <%else%>
+              <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "thumbnail card-img top" %>
+            <% end %>
+            <div class='card-body'>
+              <h5><%= @gig.date.strftime("%d %b %Y") %> , <%= @gig.venue %></h5>
+              <h6 class='card-subtitle my-2 text-muted'>Added <%= time_ago_in_words(@gig.created_at) %> ago</h6>
+              <div class='d-flex flex-column justify-content-between'>
+                <%= link_to "See more", gig_path(@gig.id), class: "btn btn-outline-primary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+<%= link_to "Back", gigs_path, class: "btn btn-dark" %>

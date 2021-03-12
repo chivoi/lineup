@@ -2,37 +2,12 @@ class DonationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:webhook]
 
   def new
-  end
-
-  def create
-  end
-
-  def show
-    stripe_session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      client_reference_id: current_user ? current_user.id : nil,
-      customer_email: params[:email],
-      customer_name: params[:name],
-      line_items: [{
-        amount: params[:amount],
-        currency: 'aud'
-      }],
-        payment_intent_data: {
-          metadata: {
-          user_id: current_user ? current_user.id : nil,
-          name: params[:name],
-          email: params[:email]
-          }
-        },
-        success_url: "#{root_url}payments/success",
-        cancel_url: "#{root_url}gigs"
-    )
-    @session_id = stripe_session.id
+    @donation = Donation.new
   end
 
   private
 
   def donation_params
-    params.require(:donation).permit(:name, :email, :amount)
+    params.require(:donation).permit(:name, :email, :amount, :payment_intent, :receipt_url)
   end
 end

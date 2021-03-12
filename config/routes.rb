@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :donations
   post 'payments/webhook', to: 'payments#webhook'
   get 'payments/success', to: 'pages#payment_success'
+  post 'payments/stripe', to: "payments#create_stripe_session", as: "new_stripe_session"
+
 end

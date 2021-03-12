@@ -27,7 +27,7 @@ class PaymentsController < ApplicationController
           email: params[:email]
           }
         },
-        success_url: "#{root_url}payments/success",
+        success_url: "#{root_url}payments/success?session_id={CHECKOUT_SESSION_ID}",
         cancel_url: "#{root_url}gigs"
     )
 

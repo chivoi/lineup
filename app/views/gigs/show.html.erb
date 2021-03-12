@@ -43,8 +43,8 @@
 </div>
 <div class='container mb-4'>
   <div class='d-flex justify-content-center'>
-    <%= link_to "Edit", edit_gig_path(@gig.id), class: "btn btn-warning mr-3" if current_user && current_user.id == @gig.user_id  %>
-    <%= link_to "Delete", @gig, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-danger mr-3" if current_user && current_user.id == @gig.user_id  %>
+    <%= link_to "Edit", edit_gig_path(@gig.id), class: "btn btn-warning mr-3" if can? :update, @gig  %>
+    <%= link_to "Delete", @gig, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-danger mr-3" if can? :destroy, @gig  %>
     <%= link_to "Back", gigs_path, class: "btn btn-dark" %>
   </div>
 </div>

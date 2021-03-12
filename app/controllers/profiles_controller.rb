@@ -67,6 +67,12 @@ class ProfilesController < ApplicationController
 
   def set_user_profile
     @profile = current_user.profile
+    if @profile == nil && current_user.is_admin
+      @profile = Profile.find_by_id(params[:id])
+    else
+      flash[:alert] = "You don't have permission to do that"
+      redirect_to gigs_path
+    end
   end
 
   def set_form_vars

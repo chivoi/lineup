@@ -1,6 +1,7 @@
 class GigsController < ApplicationController
   skip_before_action :verify_authenticity_token
     
+  load_and_authorize_resource
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_gig, only: %i[ show ]
   before_action :set_form_vars, only: [:new, :edit]
@@ -69,7 +70,9 @@ class GigsController < ApplicationController
   # authorization
   def set_user_gig
     @gig = current_user.gigs.find_by_id(params[:id])
-    if @gig == nil
+    if @gig == nil && current_user.is_admin
+      @gig = Gig.find_by_id(params[:id])
+    else
       flash[:alert] = "You don't have permission to do that"
       redirect_to gigs_path
     end

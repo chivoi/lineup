@@ -37,5 +37,8 @@ module Lineup
 
     config.paths['app/views'] << "app/views/devise"
 
+    # For heroku asset pipeline
+    config.serve_static_assets = true
+
   end
 end

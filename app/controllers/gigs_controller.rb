@@ -1,7 +1,7 @@
 class GigsController < ApplicationController
   skip_before_action :verify_authenticity_token
     
-  # load_and_authorize_resource
+  load_and_authorize_resource
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_gig, only: %i[ show ]
   before_action :set_form_vars, only: [:new, :edit]

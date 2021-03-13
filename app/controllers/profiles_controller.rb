@@ -1,4 +1,8 @@
 class ProfilesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
+  load_and_authorize_resource
+  
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_profile, only: %i[ show ]
   before_action :set_form_vars, only: [:new, :edit]

@@ -24,10 +24,9 @@
         <button class="btn btn-secondary" disabled>Message <%= @profile.name %></button>
       <% elsif !current_user %>
         <%= button_to "Login to team up with #{@profile.name} for a show!", new_user_session_path %>
-      <% else %>
-        <%= link_to "Edit", edit_profile_path(@profile.id), class: "btn btn-warning mr-3" %>
-        <%= link_to "Delete", @profile, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-danger mr-3" %>
-      <%end%>
+      <% end %>
+      <%= link_to "Edit", edit_profile_path(@profile.id), class: "btn btn-warning mr-3" if can? :update, @profile %>
+      <%= link_to "Delete", @profile, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-danger mr-3" if can? :destroy, @profile %>
     </div>
   </div>
 </div>

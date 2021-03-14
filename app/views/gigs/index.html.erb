@@ -10,10 +10,12 @@
             <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "thumbnail card-img top" %>
           <% end %>
           <div class='card-body'>
-            <h5><%= gig.date.strftime("%d %b %Y") %> , <%= gig.venue %></h5>
-            <% if gig.filled%>
-              <h6>- FILLED</h6>
+             <% if gig.filled%>
+              <span class="d-flex badge badge-danger filled mx-auto mb-2">FILLED</span>
+            <%else%>
+               <span class="d-flex badge badge-danger available mx-auto mb-2">AVAILABLE</span>
             <% end %>
+            <h5><%= gig.date.strftime("%d %b %Y") %>, <%= gig.venue %></h5>
             <% gig.styles.each do |style|%>
               <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
             <%end%>

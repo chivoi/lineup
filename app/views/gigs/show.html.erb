@@ -17,7 +17,7 @@
       <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
     <%end%>
     <h5 class="text-muted mt-2"> <%= @gig.date.strftime("%d %b %Y") %>, <%=@gig.time%></h5>
-    <h5 class='mb-2 pb-1'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @gig.location %></h5>
+    <h5 class='location mb-2 pb-1'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @gig.location %></h5>
     <p><b>Looking for:</b> <%= @gig.musictype.name %>, <%= @gig.set_length %> min</p>
     <% if @gig.door_charge %>
       <p><b>Door charge:</b> $<%= @gig.door_charge.round %></p>
@@ -43,8 +43,8 @@
 </div>
 <div class='container mb-4'>
   <div class='d-flex justify-content-center'>
-    <%= link_to "Edit", edit_gig_path(@gig.id), class: "btn btn-warning mr-3" if can? :update, @gig  %>
+    <%= link_to "Edit", edit_gig_path(@gig.id), class: "btn btn-custom mr-3" if can? :update, @gig  %>
     <%= link_to "Delete", @gig, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-danger mr-3" if can? :destroy, @gig  %>
-    <%= link_to "Back", gigs_path, class: "btn btn-dark" %>
+    <%= link_to "Back", gigs_path, class: "btn" %>
   </div>
 </div>

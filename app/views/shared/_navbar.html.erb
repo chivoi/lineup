@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg d-flex">
-  <div class="container-fluid d-flex  p-3 bd-highlight">
+  <div class="container-fluid p-3 bd-highlight">
     <%=link_to "LineUp", gigs_path, class:"navbar-brand cherry"%>
-    <div class="collapse navbar-collapse d-flex justify-content-between " id="navbarSupportedContent">
+    <div class="collapse navbar-collapse d-flex flex-row justify-content-around" id="navbarSupportedContent">
+    <div class="d-flex flex-row">
       <ul class="navbar-nav nav-text me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">What is LineUp?</a>
@@ -16,6 +17,7 @@
           <%=link_to "Browse Musos", profiles_path, class: 'nav-link'%>
         </li>
       </ul>
+      </div>
       <div class="d-flex justify-content-end">
        <div class="nav-item dropdown">
           <%= link_to "#", id: "navbarDropdown", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: false } do %>
@@ -28,7 +30,7 @@
                   <%= link_to "My Profile", current_user.profile ? profile_path(current_user.profile.id) : new_profile_path %>
                 </li>
                 <li class="dropdown-item p-0" href="#">
-                  <%= link_to "My requests", user_requests_path %>
+                  <%= link_to "My Requests", user_requests_path %>
                 </li>
                 <li class="dropdown-item p-0" href="#">
                   <p class="p-0">My Gigs</p>

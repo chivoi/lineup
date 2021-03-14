@@ -1,10 +1,10 @@
-<div class="container d-flex flex-column flex-md-row-reverse px-2 my-2 my-md-4">
-  <div class="content col-12 col-md-7 col-lg-8 p-0 pr-md-3"> 
-    <div class="col-12 p-0 main-preview">
+<div class="container d-flex flex-column flex-md-row-reverse justify-content-center px-2 my-2 my-md-5">
+  <div class="content col-12 col-md-7 col-lg-6 p-0 pr-md-3"> 
+    <div class="col-10 p-0 main-preview">
       <% if @profile.image.attached? %>
-        <%= image_tag @profile.image.first, alt: "photo of the act", class: "thumbnail card-img top" %>
+        <%= image_tag @profile.image.first, alt: "photo of the act", class: "thumbnail card-img top border-rad" %>
       <%else%>
-        <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top" %>
+        <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top border-rad" %>
       <% end %>
     </div>
   </div>

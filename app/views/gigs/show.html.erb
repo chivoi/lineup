@@ -1,23 +1,24 @@
-<div class="container d-flex flex-column flex-md-row-reverse px-2 my-2 my-md-5">
-  <div class="content col-12 col-md-7 col-lg-8 p-0 pr-md-3"> 
-    <div class="col-12 p-0 main-preview mb-4">
+<% if @gig.filled%>
+<span class="d-flex badge badge-danger filled mx-auto mb-2">FILLED</span>
+<%end%>
+
+<div class="container d-flex flex-column flex-md-row-reverse justify-content-center px-2 my-2 my-md-5">
+  <div class="content col-12 col-md-7 col-lg-6 p-0 pr-md-3"> 
+    <div class="col-9 p-0 main-preview mb-2">
        <% if @gig.image.attached? %>
-          <%= image_tag @gig.image, alt: "poster of the gig", class: "thumbnail card-img top" %>
+          <%= image_tag @gig.image, alt: "poster of the gig", class: "thumbnail card-img top border-rad" %>
         <%else%>
-          <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "thumbnail card-img top" %>
+          <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "thumbnail card-img top border-rad" %>
         <% end %>
     </div>
   </div>
   <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
     <h1 class='mb-2'><%= link_to @gig.user.profile.name, profile_path(@gig.user.profile.id) %> @ <%= @gig.venue %></h1>
-    <% if @gig.filled%>
-    <h3>- FILLED</h3>
-    <% end %>
     <% @gig.styles.each do |style|%>
       <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
     <%end%>
-    <h5 class="text-muted mt-2"> <%= @gig.date.strftime("%d %b %Y") %>, <%=@gig.time%></h5>
-    <h5 class='location mb-2 pb-1'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @gig.location %></h5>
+    <h5 class="mute-text mt-2"> <%= @gig.date.strftime("%d %b %Y") %>, <%=@gig.time%></h5>
+    <h5 class='location mb-2 pb-1 location'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @gig.location %></h5>
     <p><b>Looking for:</b> <%= @gig.musictype.name %>, <%= @gig.set_length %> min</p>
     <% if @gig.door_charge %>
       <p><b>Door charge:</b> $<%= @gig.door_charge.round %></p>
@@ -33,8 +34,6 @@
         <%= button_to "Login to go on the bill", new_user_session_path %>
       <%elsif current_user.id != @gig.user_id && !@gig.filled%>
        <%= button_to "Request to join", new_request_path  %>
-      <%elsif @gig.filled == true%>
-        <button class="btn btn-secondary" disabled>Filled</button>
       <%elsif !current_user && @gig.filled == false%>
         <%= button_to "Login to go on the bill", new_user_session_path %>
       <%end%>

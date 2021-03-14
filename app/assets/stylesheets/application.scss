@@ -20,9 +20,15 @@ body {
   background-color: #fffffb;
 }
 
-.navbar {
-  background-color: #28081e;
+.fit-content {
+  width: fit-content;
 }
+
+.border-rad {
+  border-radius: 12px;
+}
+
+// text
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Open Sans";
@@ -44,8 +50,8 @@ a {
   }
 }
 
-h5 {
-    color: #1b5155;
+.location {
+    color: #b12026;
 }
 
 .inverse {
@@ -53,9 +59,7 @@ h5 {
   color: #28081e;
 }
 
-.dropdown-item:hover {
-  background-color: none;
-}
+// buttons
 
 .btn {
   background-color: #421b1a;
@@ -69,9 +73,44 @@ h5 {
   }
 }
 
-.badge {
-  font-family: 'Open Sans';
-  letter-spacing: 0.5px;
+.btn-brown {
+  color: rgb(134, 125, 125);
+}
+
+// requests
+
+.request-card {
+  margin: 30px;
+  width: 90%;
+  height: fit-content;
+  border-width: 0 1px 1px 0;
+  border-color: rgb(134, 125, 125);
+  border-style: dotted;
+}
+
+.request-card-img {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+// donation
+
+.donation {
+  background-color: #b12026;
+  color: white;
+  &:hover{
+    background-color: #fffffb;
+    color: #b12026;
+    border-width: 0 1px 1px 0;
+    border-style: dotted;
+    border-color: #421b1a;
+  }
+}
+
+// navbar
+
+.navbar {
+  background-color: #000000;
 }
 
 .navbar-icon {
@@ -79,24 +118,8 @@ h5 {
   height: 30px;
 }
 
-.fit-content {
-  width: fit-content;
-}
-
-.border-rad {
-  border-radius: 12px;
-}
-
-.request-card {
-  margin: 30px;
-  width: 90%;
-  height: fit-content;
-  border: 1px solid black;
-}
-
-.request-card-img {
-  max-height: 100px;
-  overflow: hidden;
+.dropdown-item:hover {
+  background-color: none;
 }
 
 .navbar-brand {
@@ -113,7 +136,7 @@ h5 {
 .nav-link {
   color: #fffffb;
   &:hover {
-    color: #ffd7d9;
+    color: #fc5e63;
     text-shadow: 1px 1px #b12026;
   }
 }
@@ -123,6 +146,12 @@ h5 {
   font-weight: normal;
   font-size: 1.3em;
 }
+
+.mute-text {
+  color: rgb(134, 125, 125);
+}
+
+// gig statuses
 
 .filled {
   font-weight: bold;
@@ -141,6 +170,38 @@ h5 {
   text-shadow: 1px 1px #421b1a;
   box-shadow: 0.3px 0.3px #421b1a;
 }
+
+// images
+
+.img-cut {
+  object-fit: cover;
+  width:100%;
+  height:230px;
+}
+
+// badges
+
+.badge {
+  font-family: 'Open Sans';
+  letter-spacing: 0.5px;
+}
+
+.badge-yellow {
+  background-color: rgb(255, 218, 10);
+  border: 1px solid black;
+}
+
+.badge-black {
+  background-color: #000000;
+  color: white;
+}
+
+.badge-red {
+  background-color: #9920b1;
+  border: 1px solid black;
+  color: white;
+}
+
 
 // external fonts
 

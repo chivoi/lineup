@@ -1,7 +1,7 @@
 <h1 class='hero-title text-center mb-5'>Sent requests:</h1>
 <%if current_user.requests.present? %>
   <% @requested_gigs.each do |request| %>
-    <div class="media request-card">
+    <div class="media request-card border-rad">
         <% if request.gig.image.attached? %>
           <%= image_tag request.gig.image, alt: "poster of the gig", class: "mr-3 request-card-img" %>
         <%else%>
@@ -19,7 +19,7 @@
 <h1 class='hero-title text-center mb-5'>Received requests:</h1>
 <%if @requests_received.present? %>
   <% @requests_received.each do |request| %>
-    <div class="media request-card">
+    <div class="media request-card border-rad">
         <% if request.gig.image.attached? %>
           <%= image_tag request.gig.image, alt: "poster of the gig", class: "mr-3 request-card-img" %>
         <%else%>

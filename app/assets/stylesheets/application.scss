@@ -202,6 +202,38 @@ a {
   color: white;
 }
 
+// home page
+.hero-gigs {
+  width: 48vw;
+  height: 70vh;
+  background-image: url('hero-gigs');
+  background-repeat: no-repeat;
+  object-fit: contain;
+}
+
+.hero-profiles {
+  width: 48vw;
+  height: 70vh;
+  background-image: url('hero-profiles');
+  background-repeat: no-repeat;
+  object-fit: contain;
+  filter: sepia(50%);
+}
+
+.hero-text {
+  color: white;
+  text-shadow: 3px 3px black;
+}
+
+.hero-link {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    transform: translate(-4px, -3px);
+    filter: drop-shadow(3px 3px 1px grey);
+  }
+}
+
 
 // external fonts
 

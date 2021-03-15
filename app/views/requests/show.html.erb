@@ -11,6 +11,7 @@
           <% end %>
         <div class="media-body">
           <h5 class="mt-0"><%= link_to request.gig.user.profile.name, profile_path(request.gig.user.profile.id)%> on <%= request.gig.date.strftime("%d %b %Y") %> @ <%= request.gig.venue %></h5>
+          <p>Status: <span class="badge badge-pill <%= select_badge_color(request.status) %>"> <%=request.status.capitalize%></span></p>
           <p><%= link_to "See more", gig_path(request.gig.id), class: "btn btn-outline-primary" %></p>
         </div>
       </div>
@@ -30,7 +31,8 @@
             <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "mr-3 request-card-img" %>
           <% end %>
         <div class="media-body">
-          <h5 class="mt-0"><%= link_to request.gig.user.profile.name, profile_path(request.gig.user.profile.id)%> on <%= request.gig.date.strftime("%d %b %Y") %> @ <%= request.gig.venue %></h5> 
+          <h5 class="mt-0"><%= link_to request.gig.user.profile.name, profile_path(request.gig.user.profile.id)%> on <%= request.gig.date.strftime("%d %b %Y") %> @ <%= request.gig.venue %></h5>
+          <p>Status: <span class="badge badge-pill <%= select_badge_color(request.status) %>"> <%=request.status.capitalize%></span></p>
           <p><%= link_to "See more", gig_path(request.gig.id), class: "btn btn-outline-primary" %></p>
         </div>
       </div>

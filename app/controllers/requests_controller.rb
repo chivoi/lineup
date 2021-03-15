@@ -5,8 +5,6 @@ class RequestsController < ApplicationController
   before_action :set_user_request, only: [:new]
 
   def new
-    @gig.filled = true
-    @gig.save
     @request = Request.create(user_id: current_user.id, gig_id: @gig.id, host_id: @gig.user_id)
   end
 
@@ -14,6 +12,18 @@ class RequestsController < ApplicationController
     @requested_gigs = current_user.requests.all
     requests = Request.all
     @requests_received = requests.where(host_id:current_user.id)
+  end
+
+  def approve_request
+    @request.status = 1
+    @request.save
+    @gig.filled = true
+    @gig.save
+  end
+
+  def decline_request
+    @request.status = 2
+    @request.save
   end
 
   private

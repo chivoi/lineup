@@ -1,29 +1,31 @@
-<div>
-  <h3>Mailbox</h3>
-  <div>
-    <div class=”item”>
+<div class="mx-5">
+  <h3 class="ml-5">Mailbox</h3>
+  <div class="mt-3">
+    <div>
       <% @conversations.each do |conversation| %>
+        <div class="mssg-card my-4">
         <% if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id %>
           <% if conversation.sender_id == current_user.id %>
             <% recipient = User.find(conversation.recipient_id) %>
           <% else %>
             <% recipient = User.find(conversation.sender_id) %>
           <% end %>
+          <% if conversation.messages.last.user.id == current_user.id%>
+            <%= icon("envelope-open-fill", class:"mssg-icon") %>
+          <%else%>
+            <%= icon("envelope-fill", class:"mssg-icon") %>
+          <% end %>
           <%= link_to recipient.profile.name,   conversation_messages_path(conversation)%>
+          Last message from
+          <% if conversation.messages.last.user.id == current_user.id %>
+            you
+          <%else%>
+            <%= conversation.messages.last.user.profile.name %>:
+          <% end %> 
+          on <%= conversation.messages.last.message_time%>
         <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div>
-  <h3>All Users</h3>
-  <div>
-    <% @users.each do |user| %>
-      <% if user.id != current_user.id %>
-        <div>
-          <%= user.profile.name %> <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post"%>
         </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>

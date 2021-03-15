@@ -92,6 +92,8 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
+    emoji (1.0.7)
+      json
     erubi (1.10.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
@@ -106,6 +108,7 @@ GEM
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
+    json (2.5.1)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -249,6 +252,7 @@ DEPENDENCIES
   byebug
   cancancan (~> 3.2)
   devise
+  emoji (~> 1.0)
   factory_bot_rails
   jbuilder (~> 2.7)
   listen (~> 3.3)

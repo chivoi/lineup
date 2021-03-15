@@ -1,5 +1,5 @@
 module RequestsHelper
-  def select_badge_color(status)
+  def select_request_badge_color(status)
     case status
     when "pending"
       return "badge-warning"

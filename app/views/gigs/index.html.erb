@@ -19,7 +19,7 @@
             <h5><%= gig.venue %></h5>
             <div class="text-truncate">
               <% gig.styles.each do |style|%>
-                <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
+                <span class='badge <%=select_badge_color(style.id)%>'><%= style.name %></span>
               <%end%>
             </div>
             <h6 class='card-subtitle my-2 mute-text'>Added <%= time_ago_in_words(gig.created_at) %> ago</h6>

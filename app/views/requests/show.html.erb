@@ -1,4 +1,4 @@
-<div class="d-flex flex-row justify-content-around flex-wrap">
+<div class="d-flex flex-row-reverse justify-content-around flex-wrap">
 <div>
   <h1 class='hero-title text-center mb-5'>Sent requests</h1>
   <%if current_user.requests.present? %>
@@ -11,8 +11,8 @@
           <% end %>
         <div class="media-body">
           <h5 class="mt-0"><%= link_to request.gig.user.profile.name, profile_path(request.gig.user.profile.id)%> on <%= request.gig.date.strftime("%d %b %Y") %> @ <%= request.gig.venue %></h5>
-          <p>Status: <span class="badge badge-pill <%= select_badge_color(request.status) %>"> <%=request.status.capitalize%></span></p>
-          <p><%= link_to "See more", gig_path(request.gig.id), class: "btn btn-outline-primary" %></p>
+          <p>Status: <span class="badge badge-pill <%= select_request_badge_color(request.status) %>"> <%=request.status.capitalize%></span></p>
+          <p><%= link_to "Gig info", gig_path(request.gig.id), class: "btn btn-outline-primary" %></p>
         </div>
       </div>
     <% end %>
@@ -31,9 +31,10 @@
             <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "mr-3 request-card-img" %>
           <% end %>
         <div class="media-body">
-          <h5 class="mt-0"><%= link_to request.gig.user.profile.name, profile_path(request.gig.user.profile.id)%> on <%= request.gig.date.strftime("%d %b %Y") %> @ <%= request.gig.venue %></h5>
-          <p>Status: <span class="badge badge-pill <%= select_badge_color(request.status) %>"> <%=request.status.capitalize%></span></p>
-          <p><%= link_to "See more", gig_path(request.gig.id), class: "btn btn-outline-primary" %></p>
+          <h5>From: <%=link_to request.user.profile.name, profile_path(request.user.profile.id) %>  </h5>
+          <h5 class="mt-0">For: <%= request.gig.date.strftime("%d %b %Y") %>, <%= request.gig.venue %></h5>
+          <p>Status: <span class="badge badge-pill <%= select_request_badge_color(request.status) %>"> <%=request.status.capitalize%></span></p>
+          <p><%= link_to "Gig info", gig_path(request.gig.id), class: "btn btn-outline-primary" %> <%= link_to "Approve", approve_request_path(request.id), class: "btn btn-success" %> <%= link_to "Decline", decline_request_path(request.id), class: "btn btn-danger" %></p>
         </div>
       </div>
     <% end %>

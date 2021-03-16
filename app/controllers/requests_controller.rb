@@ -1,7 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_gig, only: [:new]
-  before_action :set_request, only: [:new, :approve, :decline, :show_ammended]
-  before_action :set_received_request, only: [:approve, :decline]
+  before_action :set_request, only: [:approve, :decline]
   before_action :set_host, only: [:new]
   before_action :set_user_request, only: [:new, :show_ammended]
 
@@ -15,44 +14,34 @@ class RequestsController < ApplicationController
     @requests_received = requests.where(host_id:current_user.id)
   end
 
-  def show_approved
-  end
-
-  def show_declined
-  end
-
   def approve
-    @request.status = 1
-    @request.save
+    @request.accepted!
+    puts @request.status_change
     gig = @request.gig
-    gig.filled = true
-    gig.save 
+    gig.update(filled: true)
 
     respond_to do |format|
-      if @request.save && gig.save
+      if @request.status == "accepted"
         format.html {redirect_to user_requests_path, notice: "Request Approved" }
         format.json { render :show, status: :ok, location: @request }
       else
-        format.html {render :show, status: :unprocessable_entity }
+        format.html {redirect_to user_requests_path, notice: "Something went wrong" }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def decline
-    @request.status = 2
-    @request.save
+    @request.declined!
     gig = @request.gig
-    gig.filled = false
-    gig.save 
-    redirect_to user_requests_path
+    gig.update(filled: false)
 
     respond_to do |format|
-      if @request.save && gig.save
+      if @request.status == "declined"
         format.html {redirect_to user_requests_path, notice: "Request Declined" }
         format.json { render :show, status: :ok, location: @request }
       else
-        format.html {render :show, status: :unprocessable_entity }
+        format.html {redirect_to user_requests_path, notice: "Something went wrong" }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
@@ -61,7 +50,7 @@ class RequestsController < ApplicationController
   private
 
   def set_request
-    @request = Request.where(gig_id:params[:id])
+    @request = Request.find(params[:id])
   end
 
   def request_params

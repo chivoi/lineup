@@ -10,10 +10,8 @@ Rails.application.routes.draw do
   get 'payments/success', to: 'pages#payment_success'
   post 'payments/stripe', to: "payments#create_stripe_session", as: "new_stripe_session"
 
-  put "/my_requests/:id", to: "requests#approve", as: "approve_request"
-  get "/my_requests/:id/", to: "requests#approve", as: "show_approved"
-  put "/my_requests/:id", to: "requests#decline", as: "decline_request"
-  get "/my_requests/:id/", to: "requests#decline", as: "show_declined"
+  put "/my_requests/:id/accept", to: "requests#approve", as: "approve_request"
+  put "/my_requests/:id/decline", to: "requests#decline", as: "decline_request"
 
   resources :conversations do
     resources :messages

@@ -3,7 +3,7 @@ module RequestsHelper
     case status
     when "pending"
       return "badge-warning"
-    when "approved"
+    when "accepted"
       return "badge-success"
     when "declined"
       return "badge-danger"

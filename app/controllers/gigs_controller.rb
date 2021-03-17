@@ -12,7 +12,7 @@ class GigsController < ApplicationController
   end
   
   def show
-
+    authorize! :read, @gig
   end
   
   def new 
@@ -52,7 +52,7 @@ class GigsController < ApplicationController
   def destroy 
       @gig.destroy
       respond_to do |format|
-        format.html { redirect_to gigs_url, notice: "Gig was successfully destroyed." }
+        format.html { redirect_to gigs_url, notice: "Gig was successfully deleted." }
         format.json { head :no_content }
       end 
   end
@@ -74,7 +74,7 @@ class GigsController < ApplicationController
   # authorization
   def set_user_gig
     @gig = current_user.gigs.find_by_id(params[:id])
-    if @gig == nil && current_user.is_admin
+    if (@gig == nil && current_user.is_admin) || current_user.id == @gig.user_id
       @gig = Gig.find_by_id(params[:id])
     else
       flash[:alert] = "You don't have permission to do that"

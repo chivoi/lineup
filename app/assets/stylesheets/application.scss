@@ -32,7 +32,7 @@ body {
 
 // text
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .btn {
   font-family: "Open Sans";
   color: #28081e;
 }
@@ -92,8 +92,11 @@ a {
 }
 
 .request-card-img {
-  max-height: 150px;
   overflow: hidden;
+  object-fit: cover;
+  width:50%;
+  height:180px;
+  border-radius: 15px 0 0 15px;
 }
 
 // donation

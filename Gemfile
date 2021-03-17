@@ -57,3 +57,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "mailgun-ruby", "~> 1.2"
+
+gem "delayed_job_active_record", "~> 4.1"

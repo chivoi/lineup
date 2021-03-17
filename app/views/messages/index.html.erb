@@ -1,18 +1,17 @@
 <div class="container">
-  <h2>Your conversation with <%= @conversation.recipient.profile.name %></h2>
+  <h2>Your conversation with <%= link_to @conversation.recipient.profile.name, profile_path(@conversation.recipient.profile.id) %></h2>
   <div class="jumbotron mssg border-rad">
   <div class="mb-3">
   <% @messages.each do |message| %>
     <% if message.body %>
       <% user = User.find(message.user_id) %>
-      <div class="item">
-        <div class="content">
-          <div class="header">
+      <div>
+        <div>
+          <div>
             <strong><%= user.profile.name %></strong>     <%= message.message_time %>
           </div>
-          <div class="list">
-            <div class="item">
-              <i class="right triangle icon"></i>
+          <div>
+            <div>
               <%= message.body %>
             </div>
           </div>

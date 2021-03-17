@@ -8,7 +8,7 @@ class GigsController < ApplicationController
   before_action :set_user_gig, only: [:update, :edit, :destroy]
     
   def index
-      @gigs = Gig.all
+      @gigs = Gig.all.where(date:Date.today..Float::INFINITY)
   end
   
   def show

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   put "/my_requests/:id/accept", to: "requests#approve", as: "approve_request"
   put "/my_requests/:id/decline", to: "requests#decline", as: "decline_request"
+  
+  get '/about', to: "pages#about", as: "about"
 
   resources :conversations do
     resources :messages

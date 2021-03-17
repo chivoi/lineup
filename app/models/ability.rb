@@ -11,6 +11,7 @@ class Ability
     can :manage, Gig, user_id: user.id
     can [:read, :create], Profile
     can :manage, Profile, user_id: user.id
+    can :manage, User, user_id:user.id
     can :manage, :all if user.is_admin
       # if user.admin?
       #   can :manage, :all

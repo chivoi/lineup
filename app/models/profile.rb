@@ -4,7 +4,7 @@ class Profile < ApplicationRecord
   has_many :profile_styles, dependent: :destroy
   has_many :styles, through: :profile_styles
   accepts_nested_attributes_for :profile_styles
-  has_one_attached :image
+  has_many_attached :image
 
   validates :name, presence: true
 

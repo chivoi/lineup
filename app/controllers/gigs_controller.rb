@@ -57,6 +57,10 @@ class GigsController < ApplicationController
       end 
   end
 
+  def user_gigs
+    @user_gigs = current_user.gigs.all
+  end
+
   private 
 
   def set_gig

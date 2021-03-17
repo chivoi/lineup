@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :gigs
   resources :profiles
+  get '/my_gigs', to: "gigs#user_gigs", as: "user_gigs"
   post '/gigs/:id/request', to: "requests#new", as: "new_request"
   get '/my_requests', to: "requests#show", as: "user_requests"
   resources :donations

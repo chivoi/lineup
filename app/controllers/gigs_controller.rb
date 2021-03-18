@@ -35,6 +35,7 @@ class GigsController < ApplicationController
 
     respond_to do |format|
       if @gig.save
+        UserMailer.with(user: current_user, gig: @gig).new_gig_email(user: current_user, gig: @gig).deliver_later
         format.html { redirect_to @gig, notice: "Gig was successfully created." }
         format.json { render :show, status: :created, location: @gig }
       else

@@ -6,6 +6,8 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.create(user_id: current_user.id, gig_id: @gig.id, host_id: @gig.user_id)
+    @host = User.find(@request.host_id)
+    UserMailer.with(host: @host, gig: @gig).new_request_email(host: @host, gig: @gig).deliver_later
   end
 
   def show

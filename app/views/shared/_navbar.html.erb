@@ -1,5 +1,5 @@
 <!--navbar-->
-<nav class="navbar navbar-expand-lg d-flex">
+<nav class="navbar navbar-expand-lg d-flex p-4">
   <!--nav brand-->
   <%=link_to "LineUp", root_path, class:"navbar-brand cherry"%>
   <!--collapse button-->
@@ -57,7 +57,7 @@
         </ul>
       </div>
     </div>
-    <form class="nav-item">
+    <form class="nav-item form-inline">
       <%= form_tag(gigs_path, method: :get, class: "form-control me-2") do %>
         <%= text_field_tag :search, params[:search], class:'border-rad', placeholder: 'Search by suburb...' %>
         <%= submit_tag "Search", class: "btn border-rad" %>

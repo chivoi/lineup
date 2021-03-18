@@ -15,12 +15,12 @@
           <%else%>
             <%= icon("envelope-fill", class:"mssg-icon") %>
           <% end %>
-          <%= link_to recipient.profile.name,   conversation_messages_path(conversation)%>
+          <%= link_to recipient.profile.name.split.map(&:capitalize).join(' ') , conversation_messages_path(conversation)%>
           Last message from
           <% if conversation.messages.last.user.id == current_user.id %>
             you
           <%else%>
-            <%= conversation.messages.last.user.profile.name %>:
+            <%= conversation.messages.last.user.profile.name.split.map(&:capitalize).join(' ') %>:
           <% end %> 
           on <%= conversation.messages.last.message_time%>
         <% end %>

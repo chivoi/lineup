@@ -8,11 +8,18 @@ class GigsController < ApplicationController
   before_action :set_user_gig, only: [:update, :edit, :destroy]
     
   def index
-      @gigs = Gig.all
+    @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc)
+    if params[:filter_by]
+      @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc).and(Gig.where(filled: params[:filter_by])).includes(:styles, :user)
+    elsif params[:search]
+      @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc).and(Gig.where("location = ?", "#{params[:search].downcase}"))
+    else
+      @gigs = Gig.all.where(date:Date.today..Float::INFINITY).order(created_at: :desc)
+    end
   end
   
   def show
-
+    authorize! :read, @gig
   end
   
   def new 
@@ -28,6 +35,7 @@ class GigsController < ApplicationController
 
     respond_to do |format|
       if @gig.save
+        UserMailer.with(user: current_user, gig: @gig).new_gig_email(user: current_user, gig: @gig).deliver_later
         format.html { redirect_to @gig, notice: "Gig was successfully created." }
         format.json { render :show, status: :created, location: @gig }
       else
@@ -52,9 +60,13 @@ class GigsController < ApplicationController
   def destroy 
       @gig.destroy
       respond_to do |format|
-        format.html { redirect_to gigs_url, notice: "Gig was successfully destroyed." }
+        format.html { redirect_to gigs_url, notice: "Gig was successfully deleted." }
         format.json { head :no_content }
       end 
+  end
+
+  def user_gigs
+    @user_gigs = current_user.gigs.all
   end
 
   private 
@@ -64,13 +76,13 @@ class GigsController < ApplicationController
   end
 
   def gig_params
-      params.require(:gig).permit(:date, :time, :venue, :location, :description, :musictype_id, :set_length, :tickets_presale, :door_charge, :payment, :image, feature_ids: [], style_ids: [])
+      params.require(:gig).permit(:date, :time, :venue, :location, :description, :musictype_id, :set_length, :tickets_presale, :door_charge, :payment, :image, :search, feature_ids: [], style_ids: [])
   end
 
   # authorization
   def set_user_gig
     @gig = current_user.gigs.find_by_id(params[:id])
-    if @gig == nil && current_user.is_admin
+    if (@gig == nil && current_user.is_admin) || current_user.id == @gig.user_id
       @gig = Gig.find_by_id(params[:id])
     else
       flash[:alert] = "You don't have permission to do that"

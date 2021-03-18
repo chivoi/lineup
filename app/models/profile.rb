@@ -10,16 +10,29 @@ class Profile < ApplicationRecord
 
   before_save :remove_whitespace
 
+  # search by location
+  
+  def self.search(search)
+    if search
+      profile = Profile.find_by(location: search)
+      if profile
+        self.where(profile_id: profile)
+      else
+        Profile.all
+      end
+    else 
+      Profile.all
+    end
+  end
+
   private
 
   def remove_whitespace
-    self.name = self.name.strip
+    self.name = self.name.strip.downcase
     self.playtime = self.playtime.strip
     self.demolinks = self.demolinks.strip
-    self.location = self.location.strip
+    self.location = self.location.strip.downcase
     self.bio = self.bio.strip
   end
-
-
 
 end

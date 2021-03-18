@@ -59,10 +59,21 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_adapter     = :resque
+  config.active_job.queue_adapter = :delayed_job
   # config.active_job.queue_name_prefix = "lineup_production"
 
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for mailgun
+  config.action_mailer.smtp_settings = {
+    :port           => 587,
+    :address        => "smtp.mailgun.org",
+    :domain         => Rails.application.credentials.dig(:email, :domain),
+    :user_name      => Rails.application.credentials.dig(:email, :username),
+    :password       => Rails.application.credentials.dig(:email, :password),
+    :authentication => :plain,
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

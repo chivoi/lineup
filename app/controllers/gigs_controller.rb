@@ -8,11 +8,11 @@ class GigsController < ApplicationController
   before_action :set_user_gig, only: [:update, :edit, :destroy]
     
   def index
-      @gigs = Gig.all.where(date:Date.today..Float::INFINITY)
+      @gigs = Gig.all
   end
   
   def show
-    authorize! :read, @gig
+
   end
   
   def new 
@@ -52,13 +52,9 @@ class GigsController < ApplicationController
   def destroy 
       @gig.destroy
       respond_to do |format|
-        format.html { redirect_to gigs_url, notice: "Gig was successfully deleted." }
+        format.html { redirect_to gigs_url, notice: "Gig was successfully destroyed." }
         format.json { head :no_content }
       end 
-  end
-
-  def user_gigs
-    @user_gigs = current_user.gigs.all
   end
 
   private 
@@ -74,7 +70,7 @@ class GigsController < ApplicationController
   # authorization
   def set_user_gig
     @gig = current_user.gigs.find_by_id(params[:id])
-    if (@gig == nil && current_user.is_admin) || current_user.id == @gig.user_id
+    if @gig == nil && current_user.is_admin
       @gig = Gig.find_by_id(params[:id])
     else
       flash[:alert] = "You don't have permission to do that"

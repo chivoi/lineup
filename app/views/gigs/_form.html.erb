@@ -16,7 +16,7 @@
               start_year: Date.today.year,
               end_year: Date.today.year + 5,
               wrapper_html: {class: "form-group mb-3 ml-3"} %>
-  <%= f.input :time,
+  <%= f.input :time, 
               wrapper_html: {class: "form-group mb-3 ml-3"} %>
   <%= f.input :venue, 
               wrapper_html: {class: "form-group mb-3 ml-3"} %>
@@ -54,8 +54,6 @@
               as: :image, 
               input_html: { data: { direct_upload_url: :rails_direct_uploads_url } },
               wrapper_html: {class: "form-group mb-5 ml-3"} %>
-  <div class="mt-4"><%= f.button :submit,
-              label: "Create Gig",
-              wrapper_html: {class: "btn btn-dark  mb-3 ml-3"}%></div>
+  <%= f.button :submit,
+              wrapper_html: {class: "btn btn-dark  mb-3 ml-3"}%>
 <% end %>
-<%= link_to 'Back to Gigs', gigs_path, class:"btn my-4 " %>

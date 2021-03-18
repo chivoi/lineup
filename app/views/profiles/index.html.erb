@@ -4,20 +4,18 @@
     <% @profiles.each do |profile| %>
       <% if profile.teamups? %>
         <div class="col mb-4">
-          <div class='card h-100'>
+          <div class='card border-dark h-100'>
               <% if profile.image.attached? %>
-                <%= image_tag profile.image.first, alt: "photo of the act", class: "thumbnail card-img top img-cut" %>
+                <%= image_tag profile.image.first, alt: "photo of the act", class: "thumbnail card-img top" %>
               <%else%>
-                <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top img-cut" %>
+                <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top" %>
               <% end %>
             <div class='card-body'>
               <h5><%= profile.name %></h5>
-              <h6 class='card-subtitle my-2 location'><%= icon("geo-alt-fill", class:"show-icon") %> <%= profile.location %></h6>
-              <div class="text-truncate">
-                <% profile.styles.each do |style|%>
-                  <span class='badge <%= select_badge_color(style.id)%> mb-2'><%= style.name %></span>
-                <%end %>
-              </div>
+              <h6 class='card-subtitle my-2'><%= icon("geo-alt-fill", class:"show-icon") %> <%= profile.location %></h6>
+              <% profile.styles.each do |style|%>
+                <span class='badge <%= select_badge_color(style.id)%> mb-2'><%= style.name %></span>
+              <%end %>
               <div class='d-flex flex-column justify-content-between'>
                 <%= link_to "See more", profile_path(profile.id), class: "btn btn-outline-primary" %>
               </div>

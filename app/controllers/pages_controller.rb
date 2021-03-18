@@ -2,9 +2,6 @@ class PagesController < ApplicationController
   def home
   end
 
-  def about
-  end
-
   def payment_success
     session = Stripe::Checkout::Session.retrieve(params[:session_id])
     customer = Stripe::Customer.retrieve(session.customer)

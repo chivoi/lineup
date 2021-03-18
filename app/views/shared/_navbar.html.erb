@@ -1,11 +1,10 @@
-<nav class="navbar navbar-expand-lg d-flex">
-  <div class="container-fluid p-3 bd-highlight">
-    <%=link_to "LineUp", root_path, class:"navbar-brand cherry"%>
-    <div class="collapse navbar-collapse d-flex flex-row justify-content-around" id="navbarSupportedContent">
-    <div class="d-flex flex-row">
-      <ul class="navbar-nav nav-text me-auto mb-2 mb-lg-0">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+  <div class="container-fluid d-flex  p-4 bd-highlight">
+    <%=link_to "LineUp", gigs_path, class:"navbar-brand"%>
+    <div class="collapse navbar-collapse d-flex justify-content-between " id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to 'What is LineUp?', about_path, class: 'nav-link' %>
+          <a class="nav-link active" aria-current="page" href="#">What is LineUp?</a>
         </li>
         <li class="nav-item">
           <%=  current_user ? (link_to "Post a Gig", new_gig_path, class: 'nav-link') : (link_to "Post a Gig", new_user_session_path, class: 'nav-link')  %>
@@ -17,26 +16,22 @@
           <%=link_to "Browse Musos", profiles_path, class: 'nav-link'%>
         </li>
       </ul>
-      </div>
       <div class="d-flex justify-content-end">
        <div class="nav-item dropdown">
           <%= link_to "#", id: "navbarDropdown", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: false } do %>
             <%= icon("person-fill", class:"navbar-icon") %>
           <%end%>
-          <div class="dropdown-menu inverse" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <ul>
               <%if user_signed_in? %>
                 <li class="dropdown-item p-0" href="#">
                   <%= link_to "My Profile", current_user.profile ? profile_path(current_user.profile.id) : new_profile_path %>
                 </li>
                 <li class="dropdown-item p-0" href="#">
-                  <%= link_to "My Requests", user_requests_path %>
-                </li>
+                  <%= link_to "My requests", user_requests_path %>
+                </>
                 <li class="dropdown-item p-0" href="#">
-                  <%= link_to 'My Gigs', user_gigs_path, class:"p-0" %>
-                </li>
-                <li class="dropdown-item p-0" href="#">
-                  <%= link_to "My Inbox", conversations_path %>
+                  <p class="p-0">My Gigs</p>
                 </li>
                 <div class="dropdown-divider p-0"></div>
                 <li class="dropdown-item p-0" href="#">

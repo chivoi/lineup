@@ -8,10 +8,9 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
     can [:read, :create], Gig
-    can :manage, Gig, user_id: user.id
+    can [:update, :destroy], Gig, user_id: user.id
     can [:read, :create], Profile
-    can :manage, Profile, user_id: user.id
-    can :manage, User, user_id:user.id
+    can [:update, :destroy], Profile, user_id: user.id
     can :manage, :all if user.is_admin
       # if user.admin?
       #   can :manage, :all

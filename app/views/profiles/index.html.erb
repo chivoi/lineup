@@ -11,8 +11,8 @@
                 <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top img-cut" %>
               <% end %>
             <div class='card-body'>
-              <h5><%= profile.name %></h5>
-              <h6 class='card-subtitle my-2 location'><%= icon("geo-alt-fill", class:"show-icon") %> <%= profile.location %></h6>
+              <h5><%= profile.name.split.map(&:capitalize).join(' ') %></h5>
+              <h6 class='card-subtitle my-2 location'><%= icon("geo-alt-fill", class:"show-icon") %> <%= profile.location.split.map(&:capitalize).join(' ') %></h6>
               <div class="text-truncate">
                 <% profile.styles.each do |style|%>
                   <span class='badge <%= select_badge_color(style.id)%> mb-2'><%= style.name %></span>

@@ -55,8 +55,10 @@
             </div>
           </div>
           <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <%= form_tag(gigs_path, method: :get, class: "form-control me-2") do %>
+              <%= text_field_tag :search, params[:search], class:'border-rad', placeholder: 'Search by suburb...' %>
+              <%= submit_tag "Search", class: "btn border-rad" %>
+            <% end %>
           </form>
         </div>
       </div>

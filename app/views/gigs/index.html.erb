@@ -1,5 +1,6 @@
-<h1 class='hero-title text-center mb-5'>Gigs</h1>
+<h1 class='hero-title text-center mb-5'>Gigs</h1> 
 <div class='container'>
+  <p> <%= link_to 'Show only Available', gigs_path(filter_by: false), class:"pb-3" %> / <%= link_to 'Show all', gigs_path, class:"pb-3" %> </p> 
   <div class='row row-cols-sm-1 row-cols-md-2 row-cols-lg-4'>
     <% @gigs.each do |gig| %>
       <div class="col mb-4">
@@ -16,7 +17,7 @@
                <span class="d-flex badge badge-danger available mx-auto mb-2">AVAILABLE</span>
             <% end %>
             <h5><%= gig.date.strftime("%d %b %Y") %></h5> 
-            <h5><%= gig.venue %></h5>
+            <h5><%= gig.venue.split.map(&:capitalize).join(' ') %></h5>
             <div class="text-truncate">
               <% gig.styles.each do |style|%>
                 <span class='badge <%=select_badge_color(style.id)%>'><%= style.name %></span>

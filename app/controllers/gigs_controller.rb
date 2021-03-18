@@ -8,7 +8,14 @@ class GigsController < ApplicationController
   before_action :set_user_gig, only: [:update, :edit, :destroy]
     
   def index
-      @gigs = Gig.all.where(date:Date.today..Float::INFINITY)
+    @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc)
+    if params[:filter_by]
+      @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc).and(Gig.where(filled: params[:filter_by])).includes(:styles, :user)
+    elsif params[:search]
+      @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc).and(Gig.where("location = ?", "#{params[:search].downcase}"))
+    else
+      @gigs = Gig.all.where(date:Date.today..Float::INFINITY).order(created_at: :desc)
+    end
   end
   
   def show
@@ -68,7 +75,7 @@ class GigsController < ApplicationController
   end
 
   def gig_params
-      params.require(:gig).permit(:date, :time, :venue, :location, :description, :musictype_id, :set_length, :tickets_presale, :door_charge, :payment, :image, feature_ids: [], style_ids: [])
+      params.require(:gig).permit(:date, :time, :venue, :location, :description, :musictype_id, :set_length, :tickets_presale, :door_charge, :payment, :image, :search, feature_ids: [], style_ids: [])
   end
 
   # authorization

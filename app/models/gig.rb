@@ -15,13 +15,30 @@ class Gig < ApplicationRecord
   
   before_save :remove_whitespace
 
+  # search by location
+  
+  def self.search(search)
+    if search
+      gig = Gig.find_by(location: search)
+      if gig
+        self.where(gig_id: gig)
+      else
+        Gig.all
+      end
+    else 
+      Gig.all
+    end
+  end
+
   private
+
+  # removes whitespaces and downcases some values before save into the db
 
   def remove_whitespace
     self.time = self.time.strip
     self.description = self.description.strip
-    self.venue = self.venue.strip
-    self.location = self.location.strip
+    self.venue = self.venue.strip.downcase
+    self.location = self.location.strip.downcase
   end
 
 end

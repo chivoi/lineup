@@ -9,11 +9,11 @@
     </div>
   </div>
   <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
-    <h1 class='mb-2'><%= @profile.name %></h1>
+    <h1 class='mb-2'><%= @profile.name.split.map(&:capitalize).join(' ') %></h1>
     <% @profile.styles.each do |style|%>
       <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
     <%end%>
-    <h5 class='mb-2 mt-2 pb-1'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @profile.location %></h5> 
+    <h5 class='mb-2 mt-2 pb-1'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @profile.location.split.map(&:capitalize).join(' ') %></h5> 
     <p class="mb-2"><b>Set:</b> <%= @profile.playtime %></p>
     <p class="mb-1"><b>Demos:</b></p> 
     <p class="p-0 mb-2 mt-0"><%= @profile.demolinks %></p>

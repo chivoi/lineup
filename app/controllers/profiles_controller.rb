@@ -10,6 +10,11 @@ class ProfilesController < ApplicationController
   
   def index
     @profiles = Profile.all
+    if params[:search]
+      @profiles = Profile.where("location = ?", "#{params[:search].downcase}")
+    else
+      @profiles = Profile.all
+    end
   end
 
   def show

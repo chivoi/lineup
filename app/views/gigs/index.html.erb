@@ -1,29 +1,23 @@
-<h1 class='hero-title text-center mb-5'>Gigs</h1> 
+<h1 class='hero-title text-center mb-5'>Gigs</h1>
 <div class='container'>
-  <p> <%= link_to 'Show only Available', gigs_path(filter_by: false), class:"pb-3" %> / <%= link_to 'Show all', gigs_path, class:"pb-3" %> </p> 
   <div class='row row-cols-sm-1 row-cols-md-2 row-cols-lg-4'>
     <% @gigs.each do |gig| %>
       <div class="col mb-4">
-        <div class='card h-100'>
+        <div class='card border-dark h-100'>
           <% if gig.image.attached? %>
-            <%= image_tag gig.image, alt: "poster of the gig", class: "thumbnail card-img top img-cut" %>
+            <%= image_tag gig.image, alt: "poster of the gig", class: "thumbnail card-img top" %>
           <%else%>
-            <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "thumbnail card-img top img-cut" %>
+            <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "thumbnail card-img top" %>
           <% end %>
           <div class='card-body'>
+            <h5><%= gig.date.strftime("%d %b %Y") %> , <%= gig.venue %></h5>
             <% if gig.filled%>
-              <span class="d-flex badge badge-danger filled mx-auto mb-2">FILLED</span>
-            <%else%>
-               <span class="d-flex badge badge-danger available mx-auto mb-2">AVAILABLE</span>
+              <h6>- FILLED</h6>
             <% end %>
-            <h5><%= gig.date.strftime("%d %b %Y") %></h5> 
-            <h5><%= gig.venue.split.map(&:capitalize).join(' ') %></h5>
-            <div class="text-truncate">
-              <% gig.styles.each do |style|%>
-                <span class='badge <%=select_badge_color(style.id)%>'><%= style.name %></span>
-              <%end%>
-            </div>
-            <h6 class='card-subtitle my-2 mute-text'>Added <%= time_ago_in_words(gig.created_at) %> ago</h6>
+            <% gig.styles.each do |style|%>
+              <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
+            <%end%>
+            <h6 class='card-subtitle my-2 text-muted'>Added <%= time_ago_in_words(gig.created_at) %> ago</h6>
             <p class='card-text text-truncate'> Posted by <%= link_to gig.user.profile.name, profile_path(gig.user.profile.id)%></p>
             <div class='d-flex flex-column justify-content-between'>
               <%= link_to "See more", gig_path(gig.id), class: "btn btn-outline-primary" %>

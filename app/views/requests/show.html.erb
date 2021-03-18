@@ -1,53 +1,37 @@
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <h1 class='hero-title text-center mb-5'>Received requests</h1>
-      <%if @requests_received.present? %>
-        <% @requests_received.each do |request| %>
-          <div class="media request-card border-rad">
-              <% if request.gig.image.attached? %>
-                <%= image_tag request.gig.image, alt: "poster of the gig", class: "mr-3 request-card-img" %>
-              <%else%>
-                <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "mr-3 request-card-img" %>
-              <% end %>
-            <div class="media-body">
-              <h5>From: <%=link_to request.user.profile.name.split.map(&:capitalize).join(' '), profile_path(request.user.profile.id) %>  </h5>
-              <h5 class="mt-0">For: <%= request.gig.date.strftime("%d %b %Y") %>, <%= request.gig.venue.split.map(&:capitalize).join(' ') %></h5>
-              <p>Status: <span class="badge badge-pill <%= select_request_badge_color(request.status) %>"> <%=request.status.capitalize%></span></p>
-              <p><%= link_to "Approve", approve_request_path(request.id), method: :put, class: "btn btn-success" %> <%= link_to "Decline", decline_request_path(request.id), method: :put, class: "btn btn-danger" %></p>
-              <p><%= link_to "Gig info", gig_path(request.gig.id), class: "btn btn-outline-primary" %>  <%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: request.user_id), method: :post, class: "btn" %> </p>
-            </div>
-          </div>
+<h1 class='hero-title text-center mb-5'>Sent requests:</h1>
+<%if current_user.requests.present? %>
+  <% @requested_gigs.each do |request| %>
+    <div class="media request-card">
+        <% if request.gig.image.attached? %>
+          <%= image_tag request.gig.image, alt: "poster of the gig", class: "mr-3 request-card-img" %>
+        <%else%>
+          <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "mr-3 request-card-img" %>
         <% end %>
-      <% else %>
-        <p class="text-center">You haven't received any requests yet.</p>
-      <%end%>
+      <div class="media-body">
+        <h5 class="mt-0"><%= link_to request.gig.user.profile.name, profile_path(request.gig.user.profile.id)%> on <%= request.gig.date.strftime("%d %b %Y") %> @ <%= request.gig.venue %></h5>
+        <p><%= link_to "See more", gig_path(request.gig.id), class: "btn btn-outline-primary" %></p>
+      </div>
     </div>
-    <div class="col-6">
-      <h1 class='hero-title text-center mb-5'>Sent requests</h1>
-      <%if current_user.requests.present? %>
-        <% @requested_gigs.each do |request| %>
-          <div class="media request-card border-rad">
-              <% if request.gig.image.attached? %>
-                <%= image_tag request.gig.image, alt: "poster of the gig", class: "mr-3 request-card-img" %>
-              <%else%>
-                <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "mr-3 request-card-img" %>
-              <% end %>
-            <div class="media-body">
-              <h5 class="mt-0"><%= link_to request.gig.user.profile.name, profile_path(request.gig.user.profile.id)%> on <%= request.gig.date.strftime("%d %b %Y") %> @ <%= request.gig.venue %></h5>
-              <p>Status: <span class="badge badge-pill <%= select_request_badge_color(request.status) %>"> <%=request.status.capitalize%></span></p>
-              <p><%= link_to "Gig info", gig_path(request.gig.id), class: "btn btn-outline-primary" %></p>
-            </div>
-          </div>
+  <% end %>
+<% else %>
+  <p class="ml-3">You have no sent requests yet.</p>
+<%end%>
+<h1 class='hero-title text-center mb-5'>Received requests:</h1>
+<%if @requests_received.present? %>
+  <% @requests_received.each do |request| %>
+    <div class="media request-card">
+        <% if request.gig.image.attached? %>
+          <%= image_tag request.gig.image, alt: "poster of the gig", class: "mr-3 request-card-img" %>
+        <%else%>
+          <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "mr-3 request-card-img" %>
         <% end %>
-      <% else %>
-        <p class="text-center">You have no sent requests yet.</p>
-      <%end%>
+      <div class="media-body">
+        <h5 class="mt-0"><%= link_to request.gig.user.profile.name, profile_path(request.gig.user.profile.id)%> on <%= request.gig.date.strftime("%d %b %Y") %> @ <%= request.gig.venue %></h5> 
+        <p><%= link_to "See more", gig_path(request.gig.id), class: "btn btn-outline-primary" %></p>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12 mt-5 text-center">
-      <%= link_to "Back to gigs", gigs_path, class: "justify-self-end btn btn-dark mx-3" %>
-    </div>
-  </div>
-</div>
+  <% end %>
+<% else %>
+  <p class="ml-3">You haven't received any requests yet.</p>
+<%end%>
+ <%= link_to "Back to gigs", gigs_path, class: "btn btn-dark mx-3" %>

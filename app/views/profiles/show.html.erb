@@ -1,38 +1,38 @@
-<div class="container d-flex flex-column flex-md-row-reverse justify-content-center px-2 my-2 my-md-5">
-  <div class="content col-12 col-md-7 col-lg-6 p-0 pr-md-3"> 
-    <div class="col-10 p-0 main-preview">
+<div class="container d-flex flex-column flex-md-row-reverse px-2 my-2 my-md-5">
+  <div class="content col-12 col-md-7 col-lg-8 p-0 pr-md-3"> 
+    <div class="col-12 p-0 main-preview mb-4">
       <% if @profile.image.attached? %>
-        <%= image_tag @profile.image.first, alt: "photo of the act", class: "thumbnail card-img top border-rad" %>
+        <%= image_tag @profile.image.first, alt: "photo of the act", class: "thumbnail card-img top" %>
       <%else%>
-        <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top border-rad" %>
+        <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top" %>
       <% end %>
     </div>
   </div>
   <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
-    <h1 class='mb-2'><%= @profile.name.split.map(&:capitalize).join(' ') %></h1>
+    <h1 class='mb-2'><%= @profile.name %></h1>
     <% @profile.styles.each do |style|%>
       <span class='badge <%= select_badge_color(style.id)%>'><%= style.name %></span>
     <%end%>
-    <h5 class='mb-2 mt-2 pb-1'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @profile.location.split.map(&:capitalize).join(' ') %></h5> 
-    <p class="mb-2"><b>Set:</b> <%= @profile.playtime %></p>
-    <p class="mb-1"><b>Demos:</b></p> 
-    <p class="p-0 mb-2 mt-0"><%= @profile.demolinks %></p>
-    <p class="mb-1"><b>Bio:</b></p>
-    <p class='mt-1'><%= @profile.bio %></p>
+    <h5 class='mb-2 mt-2 pb-1'><%= icon("geo-alt-fill", class:"show-icon") %> <%= @profile.location %></h5> 
+    <p><b>Set:</b> <%= @profile.playtime %></p>
+    <p><b>Demos:</b></p> 
+    <%= @profile.demolinks %>
+    <p><b>Bio:</b></p>
+    <p class='mt-2'><%= @profile.bio %></p>
     <div class="mt-3 mb-3">
       <%if current_user.id != @profile.user_id %>
-        <%= link_to 'Message to team up', conversations_path(sender_id: current_user.id, recipient_id: @profile.user_id), method: :post, class: "btn" %>
+        <button class="btn btn-secondary" disabled>Message <%= @profile.name %></button>
       <% elsif !current_user %>
         <%= button_to "Login to team up with #{@profile.name} for a show!", new_user_session_path %>
       <% end %>
+      <%= link_to "Edit", edit_profile_path(@profile.id), class: "btn btn-warning mr-3" if can? :update, @profile %>
+      <%= link_to "Delete", @profile, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-danger mr-3" if can? :destroy, @profile %>
     </div>
   </div>
 </div>
 
 <div class='container mb-4'>
   <div class='d-flex justify-content-center'>
-    <%= link_to "Back", profiles_path, class: "btn btn-dark mr-3" %>
-    <%= link_to "Edit", edit_profile_path(@profile.id), class: "btn btn-warning mr-3" if can? :update, @profile %>
-    <%= link_to "Delete account", user_registration_path, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-danger mr-3" if can? :destroy, @profile %>
+    <%= link_to "Back", profiles_path, class: "btn btn-dark" %>
   </div>
 </div>

@@ -35,6 +35,7 @@ gem 'nested_form'
 gem "aws-sdk-s3", "~> 1.90"
 gem "stripe", "~> 5.30"
 gem "cancancan", "~> 3.2"
+gem "mailgun-ruby", "~> 1.2"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,7 +58,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "mailgun-ruby", "~> 1.2"
-
-gem "delayed_job_active_record", "~> 4.1"

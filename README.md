@@ -135,13 +135,34 @@ Below are the wireframes for the app. It includes wireframes for basic features.
 ![wireframes-5]('./app/assets/images/wireframes/5.jpg')<br>
 ## An ERD for your app
 
-
+![ERD]('./app/assets/images/ERD.jpeg')
 
 ## Explain the different high-level components (abstractions) in your app
 
+The main two entities in this app is a Gig and a Musician Profile.
+
+There is Gig and Profile controllers, models (interacting with Gig and Profile table accordingly) and a set of views per each: index, show, new and edit views both rendering the _form and _form_profile partials. For the gig there is also a user_gigs view to show the gigs the current user posted.
+
+Profile is created through a nested form on the Devise registrations view, but the rest of the work of this entity goes through it's own views, controller etc. 
+
+Both of those entities have the relation to User entity, which is managed by Devise in our case. User has one profile and zero to many gigs.
+
+Another entity is a Request, which also has it's own controller, a model, a joint table in a database and a couple of views: new as a request successfuly sent page, and show to show the user their sent and received requests.
+
+Requests table in the database is the joint table between users and gigs: user sends a request for a gig. The Requests controller had a functionality to decline or approve a request, which will change the request status from "pending" to "approved" or declined and change the requested gig's status to "filled" as well. User can send many requests for many gigs, and the request can be for a single gig and belong to one user at a time.
+
+There is also a Message and a Conversation entities, each having their own controller, tables in the database, models and index views. A message can belong to one sender and one receiver at a time(both sender and receiver are instances of a User class). Message can belong to one conversation at a time, conversation can have one to many messages. Users can have zero to many messages between each other. Messages are created through received params in the message field (message body).
+
+Among other components are: a Donation with it's own table in the database, controller, model and a view (form). The table has no relations to any other table, any user can input params (name, email and amount) on the new donation page and make a donation. Donation payments are handled by payments controller which creates a Stripe session, redirects the user to the Stripe payment page (through the button "donate" in the new donation view) and in case of success, redirects user to a payment success page.
+
 ## Detail any third party services that your app will use
 
-AWS S3 was used for cloud storage of images. Bootstrap for quick styling. Heroku with a set up CI/CD pipeline was used for continuous deployment.
+**External services:**
+
+* _Amazon S3_ was used for cloud storage of images;
+* _Bootstrap_ for styling;
+* _Heroku with_ a CI/CD pipeline was used for continuous deployment;
+* _Mailgun_ for automatic emailing.
 
 **Gems:**
 * **simple_form** and **nested_form**- for forms
@@ -149,14 +170,23 @@ AWS S3 was used for cloud storage of images. Bootstrap for quick styling. Heroku
 * **aws-sdk-s3** - to enable AWS cloud storage
 * **stripe** - for secure payments
 * **cancancan** - for user authorization
+* **mailgun-ruby** - to integrate ActionMailer with Mailgun
 
 ## Describe your projects models in terms of the relationships (active record associations) they have with each other
 
 The app has a total of 13 models (not including ability model from CanCanCan and application record).<br>
 The two main entities are Gigs and Users.<br>
 The Gig has features, styles and types of music.
-
-
 ## Discuss the database relations to be implemented in your application
+
+
 ##	Provide your database schema design
+
+
 ##	Describe the way tasks are allocated and tracked in your project
+
+As this was my first experience with the experience-based user stories, I had to have 2 Trello boards. One with the user stories, and another one with simple todo-style tasks that I understand and that help me organize. The first admin-board cards were labelled on the basis of the task being a "donut", a "sprinkle" and "difficult to implement", and the admin board ones were labelled based on a timeline of the project: stage1 (MVP), stage2, 3 and 4 with mostly "if I have time" type of tasks. 
+
+At the starting stages of the project, I had many ideas and I made many task cards, but as the project went on I had to scale it down multiple times, based on a new data of how long I take to accomplish a task (being new to Rails, it was a bit hard to scope the tasks right away, most of them ended up taking double-tripple the time I initially estimated), so many low-priority cards ended up beign archived or changed. For example, the search feature, initially I wanted to implement an extended search with Ransack gem, but with the time I had, I could only implement a simple one value search through ActiveRecord queries.
+
+All the cards can be viewed on [this public Trello board](https://trello.com/b/i6AEYcmU/lineup-admin).

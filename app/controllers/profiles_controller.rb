@@ -9,9 +9,9 @@ class ProfilesController < ApplicationController
   
   
   def index
-    @profiles = Profile.all
+    @profiles = Profile.all.includes(:styles).with_attached_image
     if params[:search]
-      @profiles = Profile.where("location = ?", "#{params[:search].downcase}")
+      @profiles = Profile.where("location = ?", "#{params[:search].downcase}").includes(:styles).with_attached_image
     else
       @profiles = Profile.all
     end

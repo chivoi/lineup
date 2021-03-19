@@ -17,14 +17,14 @@
                 <span class="d-flex badge badge-danger available mx-auto mb-2">AVAILABLE</span>
               <% end %>
               <h5><%= gig.date.strftime("%d %b %Y") %></h5> 
-              <h5><%= gig.venue %></h5>
+              <h5><%= gig.venue.split.map(&:capitalize).join(' ') %></h5>
               <div class="text-truncate">
                 <% gig.styles.each do |style|%>
                   <span class='badge <%=select_badge_color(style.id)%>'><%= style.name %></span>
                 <%end%>
               </div>
               <h6 class='card-subtitle my-2 mute-text'>Added <%= time_ago_in_words(gig.created_at) %> ago</h6>
-              <p class='card-text text-truncate'> Posted by <%= link_to gig.user.profile.name, profile_path(gig.user.profile.id)%></p>
+              <p class='card-text text-truncate'> Posted by <%= link_to gig.user.profile.name.split.map(&:capitalize).join(' '), profile_path(gig.user.profile.id)%></p>
               <div class='d-flex flex-column justify-content-between'>
                 <%= link_to "See more", gig_path(gig.id), class: "btn btn-outline-primary" %>
               </div>

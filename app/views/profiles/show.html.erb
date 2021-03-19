@@ -31,8 +31,7 @@
 
 <div class='container mb-4'>
   <div class='d-flex justify-content-center'>
-    <%= link_to "Back", profiles_path, class: "btn btn-dark mr-3" %>
     <%= link_to "Edit", edit_profile_path(@profile.id), class: "btn btn-warning mr-3" if can? :update, @profile %>
-    <%= link_to "Delete account", user_registration_path, method: :delete, data:{confirm: "Are you sure?"}, class: "btn btn-danger mr-3" if can? :destroy, @profile %>
+    <%= link_to "Back", profiles_path, class: "btn btn-dark mr-3" %>
   </div>
 </div>

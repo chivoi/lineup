@@ -11,9 +11,8 @@ class RequestsController < ApplicationController
   end
 
   def show
-    @requested_gigs = current_user.requests.all
-    requests = Request.all
-    @requests_received = requests.where(host_id:current_user.id)
+    @requested_gigs = current_user.requests.all.includes(:user, :gig).includes(user: :profile).includes(gig: {image_attachment: :blob})
+    @requests_received = Request.where(host_id:current_user.id).includes(:user, :gig).includes(user: :profile).includes(gig: {image_attachment: :blob})
   end
 
   def approve

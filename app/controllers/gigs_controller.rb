@@ -8,13 +8,13 @@ class GigsController < ApplicationController
   before_action :set_user_gig, only: [:update, :edit, :destroy]
     
   def index
-    @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc)
+    @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc).includes(:styles, :user).with_attached_image
     if params[:filter_by]
-      @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc).and(Gig.where(filled: params[:filter_by])).includes(:styles, :user)
+      @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc).and(Gig.where(filled: params[:filter_by])).includes(:styles, :user).with_attached_image
     elsif params[:search]
-      @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc).and(Gig.where("location = ?", "#{params[:search].downcase}"))
+      @gigs = Gig.where(date:Date.today..Float::INFINITY).order(created_at: :desc).and(Gig.where("location = ?", "#{params[:search].downcase}")).includes(:styles, :user).with_attached_image
     else
-      @gigs = Gig.all.where(date:Date.today..Float::INFINITY).order(created_at: :desc)
+      @gigs = Gig.all.where(date:Date.today..Float::INFINITY).order(created_at: :desc).includes(:styles, :user).with_attached_image
     end
   end
   

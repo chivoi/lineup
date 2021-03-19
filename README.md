@@ -135,7 +135,7 @@ Below are the wireframes for the app. It includes wireframes for basic features.
 ![wireframes-5]('./app/assets/images/wireframes/5.jpg')<br>
 ## An ERD for your app
 
-![ERD]('./app/assets/images/ERD.jpeg')
+![ERD]('./ERD.jpeg')
 
 ## Explain the different high-level components (abstractions) in your app
 

@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
   
   def index
     @users = User.all
-    @conversations = Conversation.all
+    @conversations = Conversation.where(sender:current_user).or(Conversation.where(recipient:current_user))
   end
 
   def create

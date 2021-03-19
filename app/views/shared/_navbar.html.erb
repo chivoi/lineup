@@ -9,7 +9,7 @@
 
   <!-- Collapsible content -->
   <div class="collapse navbar-collapse d-flex flex-row justify-content-around" id="navbarSupportedContent">
-    <ul class="navbar-nav nav-text me-auto mb-2 mb-lg-0">
+    <ul class="navbar-nav nav-text me-auto mb-2 mb-lg-0 d-flex">
       <li class="nav-item">
         <%= link_to 'What is LineUp?', about_path, class: 'nav-link' %>
       </li>
@@ -23,6 +23,9 @@
         <%=link_to "Browse Musos", profiles_path, class: 'nav-link'%>
       </li>
     </ul>
+
+    <!--Search and person icon-->
+    <div class="d-flex flex-row">
     <div class="nav-item dropdown">
       <%= link_to "#", id: "navbarDropdown", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: false } do %>
         <%= icon("person-fill", class:"navbar-icon") %>
@@ -62,7 +65,8 @@
         <%= text_field_tag :search, params[:search], class:'border-rad', placeholder: 'Search by suburb...' %>
         <%= submit_tag "Search", class: "btn border-rad" %>
       <% end %>
-    </form>  
+    </form> 
+    </div> 
   </div>
 </nav>
 

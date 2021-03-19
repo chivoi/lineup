@@ -9,61 +9,133 @@ ___
 
 Music industry is a tricky place to be in.<br>
 
-If the act is signed with a label, they will have a part or all of their admin taken care of for them, including booking shows. But it's not easy at all to get signed, and many Melbourn musicians stay independent and book their own performances. Which often means that they will mostly work with people they know.
+If the act is signed with a label, they will have a part or all of their admin taken care of for them, including booking shows. But it's not easy at all to get signed, and many Melbourne musicians stay independent and book their own performances. Which often means that they will mostly work with people they know, which often leads to lesser quality lineups.<br>
 
 Also, music industry was hit the hardest by COVID pandemic crisis, and many people stopped pursuing music as a result. Professional musicians might have gotten some government support (which was not much), but the unsigned semi-profesionals that make music in their time off their full-time jobs didn't get any incentive to keep going. Being that type of "employed elsewhere" musician myself, I have witnessed a lot of my friends' bands fall apart during that time.<br>
 
 Moreover, the COVID pandemic affected a lot of people on a personal level, where networking face to face in groups of people becomes strange and difficult, and more and more people I know are finding it really hard to get back into it.
 
-***LineUp*** is the app allowing bands/musos find support acts for their shows, and team up to organize shows together.<br>
-Hopefully, it will allow to help people rebuild their acts and subsequently Melbourne music industry at large step by step in ways they are comfortable with.
+Networking in music industry often involves going out after hours, seeng other people's shows, having a jam and a drink. This is not too inclusive: people with full-time jobs and families, people in recovery and the ones that are not very social by nature might feel left out.
 
 ## Why is it a problem that needs solving?
 
-1. Being a successful unsigned musician involves a special sort of networking: meeting people/bands you can organize a show with often happens after hours in bars. This can be good fun for some people, but what if you can't or won't do it?<br> 
-Maybe you work full time and have a family, or maybe you are in recovery and can't maintain this type of leisure, or you are simply not that social and hanging out in bars with random characters takes it out of you? What if on top of that the country is dealing with the aftermath of COVID pandemic, and with music industry having taken the hardest hit, all of your friendly bands have fallen apart and you don't know who to do shows with anymore?<br>
-This is where LineUp comes in, allowing people to connect online instead of traditional networking.<br>
+* Life is not life without music and arts and music industry, although recovering, still not doing very well. It needs more good quality shows by independent musicians.
 
-2. Often, the smaller unsigned acts would not put much thought on who they do a show with, and the night of music can be so diverse, it would be hard to expect big turn up, and people that do turn up might stick around for just their act of interest and not listen to anyone else. <br>
-LineUp solves that problem as well, because both on Gig and Musician profiles, the styles of music they play is clearly stated, so the users won't end up having a country, an rnb and a jazz band playing next to each other and can expect good quality crowds.<br>
+* Many independent mature musicians will benefit from an alternative and more inclusive way of networking.
 
-3. Even when everything mentioned above does not concern certain bands, in an unsigned segment of music industry, when bands book their gigs themselves, people often play shows with their mates, keeping it to however they already know. <br>
-LineUp will allow musicians look for fresh faces playing in similar styles to keep the variety present at the shows, as well as in Melbourne music scene at large, leading to new connections and opportunities.
-
+* This hasn't been done yet, there is no app like this on the market.
 ## Purpose
 
-***LineUp*** is the app allowing bands/musos find support acts for their shows, and team up to organize shows together.
+***LineUp*** is the app allowing bands/musos find support acts for their existings shows, as well as team up to organize shows together.
+
+It solves the above problems by providing an online environment for musicians to network and put some thought into creating better shows. They can do it at any convenient time at any place without having to commit to a certain lifestyle.
 
 ## Functionality / features
 
-Gig profile, band profile, teamups, requests, approve/decline request, messaging system, admin/moderator user, cloud images upload, donations w stripe
+**MVP features:**
+
+* CRUD for gigs and profiles for all users;
+* CRUD everything for admin;
+* Send request for the gig;
+* Approve/decline request for your gig;
+* User can see their own sent/received requests and posted gigs;
+* Teamups: browse musicians' profiles, opportunity to hide user's profile from profiles page if they don't want to be contacted;
+* Authentication + authorisation;
+* Sign up form nested in Devise registration form;
+* Gigs and profile cards include cloud based images;
+* Sanitized input for strings;
+* Eager loading on gigs, profiles and requests pages;
+
+**Additional features:**
+
+* Search profiles and gigs by location from navbar;
+* Filter gigs by availability;
+* Messaging system between users;
+* Donations: anyone can make a donation if they enjoy the app;
+* Automatic emails on creation of a gig and on receiving a new request;
+* Deployed with Heroku via CI/CD pipeline;
 
 ## Sitemap
 
+![sitemap]('./app/assets/images/sitemap.jpeg')
+
 ## Screenshots
+Home page
+![home page]('./app/assets/images/screenshots/home.jpg')<br>
+About
+![about page]('./app/assets/images/screenshots/about.jpg')<br>
+Donation
+![donation page]('./app/assets/images/screenshots/donation.jpg')<br>
+Gigs
+![gigs page]('./app/assets/images/screenshots/gigs.jpg')<br>
+Individual gig
+![gig page]('./app/assets/images/screenshots/gig.jpg')<br>
+Mailbox
+![mailbox page]('./app/assets/images/screenshots/mailbox.jpg')<br>
+Message
+![message page]('./app/assets/images/screenshots/message.jpg')<br>
+Payment Success page
+![payment success page]('./app/assets/images/screenshots/payment-success.jpg')<br>
+Post a gig form
+![post a gig form]('./app/assets/images/screenshots/postagig.jpg')<br>
+Profiles
+![profiles page]('./app/assets/images/screenshots/profiles.jpg')<br>
+Individual profile
+![profile page]('./app/assets/images/screenshots/profile.jpg')<br>
+Registration form
+![registration page]('./app/assets/images/screenshots/register.jpg')<br>
+Request sent page
+![request sent page]('./app/assets/images/screenshots/request.jpg')<br>
+User's gigs
+![user gigs page]('./app/assets/images/screenshots/user-gigs.jpg')<br>
+User's requests
+![user requests page]('./app/assets/images/screenshots/user-requests.jpg')<br>
+Automatic email
+![automatic email]('./app/assets/images/screenshots/request-email.jpg')<br>
+
 
 ## Target audience
 
-Musicians with full-time employment in other professions, with families, in recovery, not-social personalities and all the rest of the musicians affected by COVID pandemic on different levels.
+Musicians of Melbourne.
+
+Especialy more mature ones, with full-time employment in other professions, with families, in recovery, non-social and socially anxious personalities that prefer online networking.
 
 ## Tech stack (e.g. html, css, deployment platform, etc)
 
-* Ruby On Rails
-* Front end: Bootstrap, HTML/CSS/SASS, a bit of JavaScript
-* Database: PostgreSQL
-* Cloud storage: AWS S3
-* Testing: Postman, DBeaver
-* Deployment: Heroku
-* Version control: Github
-* Project management: Trello
-
+* **Ruby On Rails**
+* **Front end:** Bootstrap, HTML/CSS/SASS, a bit of JavaScript
+* **Database:** PostgreSQL
+* **Cloud storage:** AWS S3
+* **Testing:** Postman, DBeaver
+* **Deployment:** Heroku
+* **Version control:** Github
+* **Project management:** Trello
 ## User stories for your app
 
-[Trello board with user stories](https://trello.com/b/72F5mdXW/lineup)
+* As a user of the app, I want to be able to create an account and log in to the app to start exploring networking opportunities;
+* As a musician, I want to be able to create a profile to give people information about my act, which will allow me to be discovered;
+* As a musician, I want to be able to post a gig to find bands to play a show with me to make my search of support act easy;
+* As a musician, I want to be able to look for bands that are open to teaming up to organize shows together;
+* As a musician, I would like to message other musicians for organizing gigs together or if I have questions;
+* As a user of the website, I would like to make a donation to the creators of the app to show my gratitude and support;
+* As a musician, I want to approve or decline the requests to join my gig after looking at the applicant's profile;
+* As a user of the app, I would like to receive an email when someone has requested my gig not to miss anything;
+* As a musician, I want to be able to filter gigs by "filled" because I don't want to waste time looking through all of them;
+
+[My public trello board with all user story cards](https://trello.com/b/72F5mdXW/lineup)
 
 ## Wireframes for your app
 
+Below are the wireframes for the app. It includes wireframes for basic features. Pages like: requests, donation, inbox, message, payment success, home and others were added later in process and designed as they appeared.
+
+![wireframes-1]('./app/assets/images/wireframes/1.jpg')<br>
+![wireframes-2]('./app/assets/images/wireframes/2.jpg')<br>
+![wireframes-3]('./app/assets/images/wireframes/3.jpg')<br>
+![wireframes-4]('./app/assets/images/wireframes/4.jpg')<br>
+![wireframes-5]('./app/assets/images/wireframes/5.jpg')<br>
 ## An ERD for your app
+
+
 
 ## Explain the different high-level components (abstractions) in your app
 

@@ -1,4 +1,6 @@
-<p>Thank you for your support!  </p>
-<%= link_to "View Receipt", @purchase.receipt_url, target: :_blank, class:"btn btn-primary" %>
+<div class="container">
+  <p>Thank you for your support!  </p>
+  <%= link_to "View Receipt", @purchase.receipt_url, target: :_blank, class:"btn btn-primary" %>
 
-<%= link_to 'Back to gigs', gigs_path, class:"btn btn-dark" %>
+  <%= link_to 'Back to gigs', gigs_path, class:"btn btn-dark" %>
+</div>

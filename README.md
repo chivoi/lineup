@@ -17,7 +17,6 @@ Moreover, the COVID pandemic affected a lot of people on a personal level, where
 
 ***LineUp*** is the app allowing bands/musos find support acts for their shows, and team up to organize shows together.<br>
 Hopefully, it will allow to help people rebuild their acts and subsequently Melbourne music industry at large step by step in ways they are comfortable with.
-????
 
 ## Why is it a problem that needs solving?
 

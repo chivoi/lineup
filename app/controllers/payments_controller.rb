@@ -1,6 +1,5 @@
 class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:webhook]
-  before_action :authenticate_user!, except: [:webhook]
 
   def webhook
     payment_intent_id = params[:data][:object][:payment_intent]

@@ -10,7 +10,7 @@
   <!-- Collapsible content -->
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="d-flex flex-row justify-content-around">
-      <ul class="navbar-nav nav-text me-auto mb-2 mb-lg-0 d-flex">
+      <ul class="navbar-nav nav-text me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <%= link_to 'What is LineUp?', about_path, class: 'nav-link' %>
         </li>
@@ -23,54 +23,56 @@
         <li class="nav-item">
           <%=link_to "Browse Musos", profiles_path, class: 'nav-link'%>
         </li>
-      </ul>
-
-    <!--Search and person icon-->
-    <form class="nav-item form-inline">
-        <%= form_tag(gigs_path, method: :get, class: "form-control me-2") do %>
-          <%= text_field_tag :search, params[:search], class:'border-rad', placeholder: 'Search by suburb...' %>
-          <%= submit_tag "Search", class: "btn border-rad" %>
+        <li class="nav-item">
+           <!--Search and person icon-->
+          <div class="nav-item dropdown">
+            <%= link_to "#", id: "navbarDropdown", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: false } do %>
+              <%= icon("person-fill", class:"navbar-icon") %>
+            <%end%>
+            <div class="dropdown-menu inverse" aria-labelledby="navbarDropdown">
+              <ul>
+                <%if user_signed_in? %>
+                  <li class="dropdown-item p-0" href="#">
+                    <%= link_to "My Profile", current_user.profile ? profile_path(current_user.profile.id) : new_profile_path %>
+                  </li>
+                  <li class="dropdown-item p-0" href="#">
+                    <%= link_to "My Requests", user_requests_path %>
+                  </li>
+                  <li class="dropdown-item p-0" href="#">
+                    <%= link_to 'My Gigs', user_gigs_path, class:"p-0" %>
+                  </li>
+                  <li class="dropdown-item p-0" href="#">
+                    <%= link_to "My Inbox", conversations_path %>
+                  </li>
+                  <div class="dropdown-divider p-0"></div>
+                  <li class="dropdown-item p-0" href="#">
+                    <%= link_to "Log Out", destroy_user_session_path, method: :delete%>
+                  </li>
+                <%else%>
+                  <li class="dropdown-item" href="#">
+                    <%= link_to "Sign Up", new_user_registration_path, class: 'dropdown-item'%>
+                  </li>
+                  <li class="dropdown-item">
+                    <%= link_to "Log in", new_user_session_path, class: 'dropdown-item'%>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <% if controller_name == "gigs" || controller_name == "profiles" %>
+          <li class="nav-item">
+            <form class="form-inline">
+              <%= form_tag(gigs_path, method: :get, class: "form-control me-2") do %>
+                <%= text_field_tag :search, params[:search], class:'border-rad', placeholder: 'Search by suburb...' %>
+                <%= submit_tag "Search", class: "btn border-rad" %>
+              <% end %>
+            </form>
+          </li>
         <% end %>
-      </form>
-  </div>
-    
-      <div class="nav-item dropdown">
-        <%= link_to "#", id: "navbarDropdown", class: "nav-link dropdown-toggle", data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: false } do %>
-          <%= icon("person-fill", class:"navbar-icon") %>
-        <%end%>
-        <div class="dropdown-menu inverse" aria-labelledby="navbarDropdown">
-          <ul>
-            <%if user_signed_in? %>
-              <li class="dropdown-item p-0" href="#">
-                <%= link_to "My Profile", current_user.profile ? profile_path(current_user.profile.id) : new_profile_path %>
-              </li>
-              <li class="dropdown-item p-0" href="#">
-                <%= link_to "My Requests", user_requests_path %>
-              </li>
-              <li class="dropdown-item p-0" href="#">
-                <%= link_to 'My Gigs', user_gigs_path, class:"p-0" %>
-              </li>
-              <li class="dropdown-item p-0" href="#">
-                <%= link_to "My Inbox", conversations_path %>
-              </li>
-              <div class="dropdown-divider p-0"></div>
-              <li class="dropdown-item p-0" href="#">
-                <%= link_to "Log Out", destroy_user_session_path, method: :delete%>
-              </li>
-            <%else%>
-              <li class="dropdown-item" href="#">
-                <%= link_to "Sign Up", new_user_registration_path, class: 'dropdown-item'%>
-              </li>
-              <li class="dropdown-item">
-                <%= link_to "Log in", new_user_session_path, class: 'dropdown-item'%>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      </div>
-    </div> 
+      </ul>
     </div>
   </div>
 </nav>
+
 

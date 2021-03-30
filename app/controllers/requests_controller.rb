@@ -11,8 +11,17 @@ class RequestsController < ApplicationController
   end
 
   def show
-    @requested_gigs = current_user.requests.all.includes(:user, :gig).includes(user: :profile).includes(gig: {image_attachment: :blob})
+    @requested_gigs = current_user.requests.all.order(created_at: :desc).includes(:user, :gig).includes(user: :profile).includes(gig: {image_attachment: :blob})
+
     @requests_received = Request.where(host_id:current_user.id).includes(:user, :gig).includes(user: :profile).includes(gig: {image_attachment: :blob})
+
+    if params[:filter_by]
+      @requested_gigs = current_user.requests.where(status: params[:filter_by]).order(created_at: :desc).includes(:user, :gig).includes(user: :profile).includes(gig: {image_attachment: :blob})
+      @requests_received = Request.where(host_id:current_user.id).and(Request.where(status: params[:filter_by])).order(created_at: :desc).includes(:user, :gig).includes(user: :profile).includes(gig: {image_attachment: :blob})
+    else
+      @requested_gigs = current_user.requests.all.order(created_at: :desc).includes(:user, :gig).includes(user: :profile).includes(gig: {image_attachment: :blob}) 
+      @requests_received = Request.where(host_id:current_user.id).order(created_at: :desc).includes(:user, :gig).includes(user: :profile).includes(gig: {image_attachment: :blob})
+    end
   end
 
   def approve

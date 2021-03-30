@@ -4,14 +4,14 @@
     <% @profiles.each do |profile| %>
       <% if profile.teamups? %>
         <div class="col mb-4">
-          <div class='card h-100'>
+          <div class='card h-100 border-rad'>
               <% if profile.image.attached? %>
-                <%= image_tag profile.image.first, alt: "photo of the act", class: "thumbnail card-img top img-cut" %>
+                <%= image_tag profile.image.first, alt: "photo of the act", class: "thumbnail card-img top img-cut border-rad-card-vertical" %>
               <%else%>
-                <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top img-cut" %>
+                <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top img-cut border-rad-card-vertical" %>
               <% end %>
             <div class='card-body'>
-              <h5><%= profile.name.split.map(&:capitalize).join(' ') %></h5>
+              <h5 class="text-truncate"><%= profile.name.split.map(&:capitalize).join(' ') %></h5>
               <h6 class='card-subtitle my-2 location'><%= icon("geo-alt-fill", class:"show-icon") %> <%= profile.location.split.map(&:capitalize).join(' ') %></h6>
               <div class="text-truncate">
                 <% profile.styles.each do |style|%>

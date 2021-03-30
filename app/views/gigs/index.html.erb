@@ -4,11 +4,11 @@
   <div class='row row-cols-sm-1 row-cols-md-2 row-cols-lg-4'>
     <% @gigs.each do |gig| %>
       <div class="col mb-4">
-        <div class='card h-100'>
+        <div class='card h-100 border-rad'>
           <% if gig.image.attached? %>
-            <%= image_tag gig.image, alt: "poster of the gig", class: "thumbnail card-img top img-cut" %>
+            <%= image_tag gig.image, alt: "poster of the gig", class: "thumbnail card-img top img-cut border-rad-card-vertical" %>
           <%else%>
-            <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "thumbnail card-img top img-cut" %>
+            <%= image_tag "placeholder_gig", alt: "placeholder poster image", class: "thumbnail card-img top img-cut border-rad-card-vertical" %>
           <% end %>
           <div class='card-body'>
             <% if gig.filled%>

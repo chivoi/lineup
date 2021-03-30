@@ -13,3 +13,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+

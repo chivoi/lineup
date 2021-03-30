@@ -72,4 +72,52 @@ top: 20px;
   background: #fc5e63;
 }
   
-  
+.form-inline {
+  flex-wrap: nowrap;
+}
+
+.nav-item {
+  margin: 0 10px;
+}
+
+.navbar {
+  background-color: #000000;
+}
+
+.navbar-icon {
+  width: 30px; 
+  height: 30px;
+}
+
+.dropdown-item:hover {
+  background-color: none;
+}
+
+.navbar-brand {
+  font-family: 'Galada', 'Pattaya';
+  font-size: 2.8em;
+  color: #fffffb;
+  text-shadow: 2px 2px #b12026;
+  &:hover {
+    color: #fffffb;
+    text-shadow: 2px 2px #b12026;
+  }
+}
+
+.nav-link {
+  color: #fffffb;
+  &:hover {
+    color: #fc5e63;
+    text-shadow: 1px 1px #b12026;
+  }
+}
+
+.nav-text {
+  font-family: 'Open Sans';
+  font-weight: normal;
+  font-size: 1.3em;
+}
+
+.mute-text {
+  color: rgb(134, 125, 125);
+}

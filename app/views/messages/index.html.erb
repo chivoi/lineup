@@ -1,5 +1,14 @@
 <div class="container">
-  <h2>Your conversation with <%= link_to @conversation.recipient.profile.name.split.map(&:capitalize).join(' '), profile_path(@conversation.recipient.profile.id) %></h2>
+  <% if @conversation.sender_id == current_user.id ||      @conversation.recipient_id == current_user.id %>
+    <% if @conversation.sender_id == current_user.id %>
+      <% recipient = User.find(@conversation.recipient_id) %>
+    <% else %>
+      <% recipient = User.find(@conversation.sender_id) %>
+    <% end %>
+  <% end %>
+
+
+  <h2>Your conversation with <%= link_to recipient.profile.name.split.map(&:capitalize).join(' '), profile_path(recipient.profile.id) %></h2>
   <div class="jumbotron mssg border-rad">
   <div class="mb-3">
   <% @messages.each do |message| %>

@@ -5,9 +5,13 @@ class RequestsController < ApplicationController
   before_action :set_user_request, only: [:new, :show_ammended]
 
   def new
-    @request = Request.create(user_id: current_user.id, gig_id: @gig.id, host_id: @gig.user_id)
-    @host = User.find(@request.host_id)
-    UserMailer.with(host: @host, gig: @gig).new_request_email(host: @host, gig: @gig).deliver_later
+    if !Request.where(user_id: current_user.id, gig_id: @gig.id).present?
+      @request = Request.create(user_id: current_user.id, gig_id: @gig.id, host_id: @gig.user_id)
+      @host = User.find(@request.host_id)
+      UserMailer.with(host: @host, gig: @gig).new_request_email(host: @host, gig: @gig).deliver_later
+    else
+      redirect_to gig_path(@gig.id), method: :show, notice: "You have already requested to join this gig. The host will be in touch very soon!"
+    end
   end
 
   def show

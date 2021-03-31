@@ -1,12 +1,11 @@
-<div class="container d-flex flex-column flex-md-row-reverse justify-content-center px-2 my-2 my-md-5">
+<p class="text-center"><%= link_to "Back to profiles", profiles_path%></p>
+<div class="container d-flex flex-column flex-md-row-reverse justify-content-center px-2 mb-2 my-md-3">
   <div class="content col-12 col-md-7 col-lg-6 p-0 pr-md-3"> 
-    
-      <% if @profile.image.attached? %>
-        <%= image_tag @profile.image.first, alt: "photo of the act", class: "thumbnail card-img top border-rad" %>
-      <%else%>
-        <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top border-rad" %>
-      <% end %>
-    
+    <% if @profile.image.attached? %>
+      <%= image_tag @profile.image.first, alt: "photo of the act", class: "thumbnail card-img top border-rad object-fit-cover" %>
+    <%else%>
+      <%= image_tag "placeholder_profile", alt: "placeholder profile image", class: "thumbnail card-img top border-rad" %>
+    <% end %>
   </div>
   <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
     <h1 class='mb-2'><%= @profile.name.split.map(&:capitalize).join(' ') %></h1>
@@ -32,6 +31,5 @@
 <div class='container mb-4'>
   <div class='d-flex justify-content-center'>
     <%= link_to "Edit", edit_profile_path(@profile.id), class: "btn btn-warning mr-3" if can? :update, @profile %>
-    <%= link_to "Back", profiles_path, class: "btn btn-dark mr-3" %>
   </div>
 </div>

@@ -1,4 +1,5 @@
 <div class="container">
+  <%= link_to 'Back to gigs', gigs_path, class: 'float-right' %>
   <h1 class="mb-4">Edit Gig</h1>
   <%= render 'form', gig: @gig, styles: @styles, features: @features, musictypes: @musictypes %>
 </div>

@@ -54,8 +54,8 @@
               as: :image, 
               input_html: { data: { direct_upload_url: :rails_direct_uploads_url } },
               wrapper_html: {class: "form-group mb-5 ml-3"} %>
-  <div class="mt-4"><%= f.button :submit,
+  <div class="my-4"><%= f.button :submit,
               label: "Create Gig",
-              wrapper_html: {class: "btn btn-dark  mb-3 ml-3"}%></div>
+              wrapper_html: {class: "btn mb-3 ml-3"}%>
+  </div>
 <% end %>
-<%= link_to 'Back to Gigs', gigs_path, class:"btn my-4 " %>
